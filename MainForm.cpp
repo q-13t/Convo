@@ -8,5 +8,4 @@ void main() {
 	Application::SetCompatibleTextRenderingDefault(false);
 	Convo::MainForm mainForm;
 	Application::Run(% mainForm);
-
 }

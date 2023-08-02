@@ -3,13 +3,13 @@
 
 namespace Convo {
 
-	using namespace System;
-	using namespace System::Globalization;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
+	//using namespace System;
+	//using namespace System::Globalization;
+	//using namespace System::ComponentModel;
+	//using namespace System::Collections;
+	//using namespace System::Windows::Forms;
+	//using namespace System::Data;
+	//using namespace System::Drawing;
 
 	/// <summary>
 	/// Summary for MainForm
@@ -404,7 +404,7 @@ namespace Convo {
 			this->button_point->Name = L"button_point";
 			this->button_point->Size = System::Drawing::Size(62, 42);
 			this->button_point->TabIndex = 9;
-			this->button_point->Text = L".";
+			this->button_point->Text = L",";
 			this->button_point->UseVisualStyleBackColor = true;
 			this->button_point->Click += gcnew System::EventHandler(this, &MainForm::button_point_Click);
 			// 
@@ -626,39 +626,39 @@ namespace Convo {
 		//} else {
 			switch (e->KeyCode){
 			//Numpad number Keys
-			case Keys::NumPad0:button_zero->PerformClick();		break;
-			case Keys::NumPad1:button_one->PerformClick();		break;
-			case Keys::NumPad2:button_two->PerformClick();		break;
-			case Keys::NumPad3:button_three->PerformClick();	break;
-			case Keys::NumPad4:button_four->PerformClick();		break;
-			case Keys::NumPad5:button_five->PerformClick();		break;
-			case Keys::NumPad6:button_six->PerformClick();		break;
-			case Keys::NumPad7:button_seven->PerformClick();	break;
-			case Keys::NumPad8:button_eight->PerformClick();	break;
-			case Keys::NumPad9:button_nine->PerformClick();		break;
+			case System::Windows::Forms::Keys::NumPad0:button_zero->PerformClick();		break;
+			case System::Windows::Forms::Keys::NumPad1:button_one->PerformClick();		break;
+			case System::Windows::Forms::Keys::NumPad2:button_two->PerformClick();		break;
+			case System::Windows::Forms::Keys::NumPad3:button_three->PerformClick();	break;
+			case System::Windows::Forms::Keys::NumPad4:button_four->PerformClick();		break;
+			case System::Windows::Forms::Keys::NumPad5:button_five->PerformClick();		break;
+			case System::Windows::Forms::Keys::NumPad6:button_six->PerformClick();		break;
+			case System::Windows::Forms::Keys::NumPad7:button_seven->PerformClick();	break;
+			case System::Windows::Forms::Keys::NumPad8:button_eight->PerformClick();	break;
+			case System::Windows::Forms::Keys::NumPad9:button_nine->PerformClick();		break;
 			//Number Keys
-			case Keys::D0:button_zero->PerformClick();			break;
-			case Keys::D1:button_one->PerformClick();			break;
-			case Keys::D2:button_two->PerformClick();			break;
-			case Keys::D3:button_three->PerformClick();			break;
-			case Keys::D4:button_four->PerformClick();			break;
-			case Keys::D5:button_five->PerformClick();			break;
-			case Keys::D6:button_six->PerformClick();			break;
-			case Keys::D7:button_seven->PerformClick();			break;
-			case Keys::D8:button_eight->PerformClick();			break;
-			case Keys::D9:button_nine->PerformClick();			break;
+			case System::Windows::Forms::Keys::D0:button_zero->PerformClick();			break;
+			case System::Windows::Forms::Keys::D1:button_one->PerformClick();			break;
+			case System::Windows::Forms::Keys::D2:button_two->PerformClick();			break;
+			case System::Windows::Forms::Keys::D3:button_three->PerformClick();			break;
+			case System::Windows::Forms::Keys::D4:button_four->PerformClick();			break;
+			case System::Windows::Forms::Keys::D5:button_five->PerformClick();			break;
+			case System::Windows::Forms::Keys::D6:button_six->PerformClick();			break;
+			case System::Windows::Forms::Keys::D7:button_seven->PerformClick();			break;
+			case System::Windows::Forms::Keys::D8:button_eight->PerformClick();			break;
+			case System::Windows::Forms::Keys::D9:button_nine->PerformClick();			break;
 			//Action Buttons
-			case Keys::Enter:button_equals->PerformClick();				break;
-			case Keys::Delete:button_clear_all->PerformClick();			break;
-			case Keys::Multiply:button_mutiplication->PerformClick();	break;
-			case Keys::Add:button_plus->PerformClick();					break;
-			case Keys::Subtract : button_minus->PerformClick();			break;
-			case Keys::Decimal:button_point->PerformClick();			break;
-			case Keys::Divide:button_division->PerformClick();			break;
-			case Keys::Oemplus:button_plus->PerformClick();				break;
-			case Keys::OemMinus:button_minus->PerformClick();			break;
-			case Keys::OemPeriod:button_point->PerformClick();			break;
-			case Keys::Back:button_erase->PerformClick();				break;
+			case System::Windows::Forms::Keys::Enter:button_equals->PerformClick();				break;
+			case System::Windows::Forms::Keys::Delete:button_clear_all->PerformClick();			break;
+			case System::Windows::Forms::Keys::Multiply:button_mutiplication->PerformClick();	break;
+			case System::Windows::Forms::Keys::Add:button_plus->PerformClick();					break;
+			case System::Windows::Forms::Keys::Subtract : button_minus->PerformClick();			break;
+			case System::Windows::Forms::Keys::Decimal:button_point->PerformClick();			break;
+			case System::Windows::Forms::Keys::Divide:button_division->PerformClick();			break;
+			case System::Windows::Forms::Keys::Oemplus:button_plus->PerformClick();				break;
+			case System::Windows::Forms::Keys::OemMinus:button_minus->PerformClick();			break;
+			case System::Windows::Forms::Keys::OemPeriod:button_point->PerformClick();			break;
+			case System::Windows::Forms::Keys::Back:button_erase->PerformClick();				break;
 
 			default:
 				break;
@@ -677,7 +677,7 @@ namespace Convo {
 		}
 	}
 	private: System::Void button_equals_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (firstValue!=Double::MinValue&& action!=' ') {
+		if (firstValue!=System::Double::MinValue&& action!=' ') {
 			switch (action){
 			case '+':
 				label_action->Text += label_result_input->Text;
@@ -744,8 +744,8 @@ namespace Convo {
 	}
 	private: System::Void button_clear_all_Click(System::Object^ sender, System::EventArgs^ e) {
 		action = ' ';
-		firstValue = Double::MinValue;
-		secondValue = Double::MinValue;
+		firstValue = System::Double::MinValue;
+		secondValue = System::Double::MinValue;
 		label_action->ResetText();
 		label_result_input->ResetText();
 	}

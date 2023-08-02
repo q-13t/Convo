@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace Convo {
@@ -41,7 +41,8 @@ namespace Convo {
 	private: System::Windows::Forms::Button^ button_equals;
 	private: System::Windows::Forms::Button^ button_point;
 	private: System::Windows::Forms::Button^ button_zero;
-	private: System::Windows::Forms::Button^ button8;
+	private: System::Windows::Forms::Button^ button_plus_minus;
+
 	private: System::Windows::Forms::Button^ button_plus;
 	private: System::Windows::Forms::Button^ button_three;
 	private: System::Windows::Forms::Button^ button_two;
@@ -56,11 +57,14 @@ namespace Convo {
 	private: System::Windows::Forms::Button^ button_five;
 	private: System::Windows::Forms::Button^ button_six;
 	private: System::Windows::Forms::Button^ button_seven;
-	private: System::Windows::Forms::Button^ button15;
+	private: System::Windows::Forms::Button^ button_one_divided_by;
+
 	private: System::Windows::Forms::Button^ button_erase;
-	private: System::Windows::Forms::Button^ button13;
+	private: System::Windows::Forms::Button^ button_power_two;
+
 	private: System::Windows::Forms::Button^ button_division;
-	private: System::Windows::Forms::Button^ button11;
+	private: System::Windows::Forms::Button^ button_suqre_root;
+
 	private: System::Windows::Forms::SplitContainer^ splitContainer1;
 	private: System::Windows::Forms::Label^ label_action;
 	private: System::Windows::Forms::Label^ label_result_input;
@@ -68,6 +72,7 @@ namespace Convo {
 		   double  firstValue;
 		   double secondValue;
 		   char action;
+		   bool calculated;
 
 	private:
 		/// <summary>
@@ -92,14 +97,14 @@ namespace Convo {
 			this->button_five = (gcnew System::Windows::Forms::Button());
 			this->button_six = (gcnew System::Windows::Forms::Button());
 			this->button_seven = (gcnew System::Windows::Forms::Button());
-			this->button15 = (gcnew System::Windows::Forms::Button());
+			this->button_one_divided_by = (gcnew System::Windows::Forms::Button());
 			this->button_erase = (gcnew System::Windows::Forms::Button());
-			this->button13 = (gcnew System::Windows::Forms::Button());
+			this->button_power_two = (gcnew System::Windows::Forms::Button());
 			this->button_division = (gcnew System::Windows::Forms::Button());
-			this->button11 = (gcnew System::Windows::Forms::Button());
+			this->button_suqre_root = (gcnew System::Windows::Forms::Button());
 			this->button_point = (gcnew System::Windows::Forms::Button());
 			this->button_zero = (gcnew System::Windows::Forms::Button());
-			this->button8 = (gcnew System::Windows::Forms::Button());
+			this->button_plus_minus = (gcnew System::Windows::Forms::Button());
 			this->button_plus = (gcnew System::Windows::Forms::Button());
 			this->button_three = (gcnew System::Windows::Forms::Button());
 			this->button_two = (gcnew System::Windows::Forms::Button());
@@ -142,14 +147,14 @@ namespace Convo {
 			this->tableLayoutPanel1->Controls->Add(this->button_five, 3, 0);
 			this->tableLayoutPanel1->Controls->Add(this->button_six, 3, 0);
 			this->tableLayoutPanel1->Controls->Add(this->button_seven, 3, 0);
-			this->tableLayoutPanel1->Controls->Add(this->button15, 3, 0);
+			this->tableLayoutPanel1->Controls->Add(this->button_one_divided_by, 3, 0);
 			this->tableLayoutPanel1->Controls->Add(this->button_erase, 3, 0);
-			this->tableLayoutPanel1->Controls->Add(this->button13, 3, 0);
+			this->tableLayoutPanel1->Controls->Add(this->button_power_two, 3, 0);
 			this->tableLayoutPanel1->Controls->Add(this->button_division, 3, 0);
-			this->tableLayoutPanel1->Controls->Add(this->button11, 3, 0);
+			this->tableLayoutPanel1->Controls->Add(this->button_suqre_root, 3, 0);
 			this->tableLayoutPanel1->Controls->Add(this->button_point, 2, 2);
 			this->tableLayoutPanel1->Controls->Add(this->button_zero, 1, 2);
-			this->tableLayoutPanel1->Controls->Add(this->button8, 0, 2);
+			this->tableLayoutPanel1->Controls->Add(this->button_plus_minus, 0, 2);
 			this->tableLayoutPanel1->Controls->Add(this->button_plus, 2, 1);
 			this->tableLayoutPanel1->Controls->Add(this->button_three, 1, 1);
 			this->tableLayoutPanel1->Controls->Add(this->button_two, 0, 1);
@@ -315,20 +320,21 @@ namespace Convo {
 			this->button_seven->UseVisualStyleBackColor = true;
 			this->button_seven->Click += gcnew System::EventHandler(this, &MainForm::button_seven_Click);
 			// 
-			// button15
+			// button_one_divided_by
 			// 
-			this->button15->AutoSize = true;
-			this->button15->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->button15->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->button15->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button15->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_one_divided_by->AutoSize = true;
+			this->button_one_divided_by->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->button_one_divided_by->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->button_one_divided_by->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button_one_divided_by->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button15->Location = System::Drawing::Point(3, 51);
-			this->button15->Name = L"button15";
-			this->button15->Size = System::Drawing::Size(62, 42);
-			this->button15->TabIndex = 14;
-			this->button15->Text = L"NULL";
-			this->button15->UseVisualStyleBackColor = true;
+			this->button_one_divided_by->Location = System::Drawing::Point(3, 51);
+			this->button_one_divided_by->Name = L"button_one_divided_by";
+			this->button_one_divided_by->Size = System::Drawing::Size(62, 42);
+			this->button_one_divided_by->TabIndex = 14;
+			this->button_one_divided_by->Text = L"⅟x";
+			this->button_one_divided_by->UseVisualStyleBackColor = true;
+			this->button_one_divided_by->Click += gcnew System::EventHandler(this, &MainForm::button_one_divided_by_Click);
 			// 
 			// button_erase
 			// 
@@ -346,20 +352,21 @@ namespace Convo {
 			this->button_erase->UseVisualStyleBackColor = true;
 			this->button_erase->Click += gcnew System::EventHandler(this, &MainForm::button_erase_Click);
 			// 
-			// button13
+			// button_power_two
 			// 
-			this->button13->AutoSize = true;
-			this->button13->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->button13->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->button13->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button13->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_power_two->AutoSize = true;
+			this->button_power_two->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->button_power_two->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->button_power_two->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button_power_two->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button13->Location = System::Drawing::Point(71, 51);
-			this->button13->Name = L"button13";
-			this->button13->Size = System::Drawing::Size(62, 42);
-			this->button13->TabIndex = 12;
-			this->button13->Text = L"NULL";
-			this->button13->UseVisualStyleBackColor = true;
+			this->button_power_two->Location = System::Drawing::Point(71, 51);
+			this->button_power_two->Name = L"button_power_two";
+			this->button_power_two->Size = System::Drawing::Size(62, 42);
+			this->button_power_two->TabIndex = 12;
+			this->button_power_two->Text = L"x²";
+			this->button_power_two->UseVisualStyleBackColor = true;
+			this->button_power_two->Click += gcnew System::EventHandler(this, &MainForm::button_power_two_Click);
 			// 
 			// button_division
 			// 
@@ -377,20 +384,21 @@ namespace Convo {
 			this->button_division->UseVisualStyleBackColor = true;
 			this->button_division->Click += gcnew System::EventHandler(this, &MainForm::button_division_Click);
 			// 
-			// button11
+			// button_suqre_root
 			// 
-			this->button11->AutoSize = true;
-			this->button11->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->button11->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->button11->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button11->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_suqre_root->AutoSize = true;
+			this->button_suqre_root->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->button_suqre_root->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->button_suqre_root->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button_suqre_root->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button11->Location = System::Drawing::Point(139, 51);
-			this->button11->Name = L"button11";
-			this->button11->Size = System::Drawing::Size(62, 42);
-			this->button11->TabIndex = 10;
-			this->button11->Text = L"NULL";
-			this->button11->UseVisualStyleBackColor = true;
+			this->button_suqre_root->Location = System::Drawing::Point(139, 51);
+			this->button_suqre_root->Name = L"button_suqre_root";
+			this->button_suqre_root->Size = System::Drawing::Size(62, 42);
+			this->button_suqre_root->TabIndex = 10;
+			this->button_suqre_root->Text = L"√x";
+			this->button_suqre_root->UseVisualStyleBackColor = true;
+			this->button_suqre_root->Click += gcnew System::EventHandler(this, &MainForm::button_suqre_root_Click);
 			// 
 			// button_point
 			// 
@@ -424,20 +432,21 @@ namespace Convo {
 			this->button_zero->UseVisualStyleBackColor = true;
 			this->button_zero->Click += gcnew System::EventHandler(this, &MainForm::button_zero_Click);
 			// 
-			// button8
+			// button_plus_minus
 			// 
-			this->button8->AutoSize = true;
-			this->button8->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->button8->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button8->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_plus_minus->AutoSize = true;
+			this->button_plus_minus->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->button_plus_minus->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->button_plus_minus->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button_plus_minus->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button8->Location = System::Drawing::Point(3, 243);
-			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(62, 42);
-			this->button8->TabIndex = 7;
-			this->button8->Text = L"+/-";
-			this->button8->UseVisualStyleBackColor = true;
+			this->button_plus_minus->Location = System::Drawing::Point(3, 243);
+			this->button_plus_minus->Name = L"button_plus_minus";
+			this->button_plus_minus->Size = System::Drawing::Size(62, 42);
+			this->button_plus_minus->TabIndex = 7;
+			this->button_plus_minus->Text = L"±";
+			this->button_plus_minus->UseVisualStyleBackColor = true;
+			this->button_plus_minus->Click += gcnew System::EventHandler(this, &MainForm::button_plus_minus_Click);
 			// 
 			// button_plus
 			// 
@@ -617,54 +626,45 @@ namespace Convo {
 		}
 #pragma endregion
 	private: System::Void KeyListener(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		//auto keyCode = e->KeyCode;
-		//auto keyValue = e->KeyValue;
-		//if (keyCode >= Keys::NumPad0 && keyCode <= Keys::NumPad9){
-		//	label_result_input->Text += System::Convert::ToString((char)(keyValue - 96));
-		//} else if (keyCode >= Keys::D0 && keyCode <= Keys::D9) {
-		//	label_result_input->Text += System::Convert::ToString((char)(keyValue - 48));
-		//} else {
-			switch (e->KeyCode){
-			//Numpad number Keys
-			case System::Windows::Forms::Keys::NumPad0:button_zero->PerformClick();		break;
-			case System::Windows::Forms::Keys::NumPad1:button_one->PerformClick();		break;
-			case System::Windows::Forms::Keys::NumPad2:button_two->PerformClick();		break;
-			case System::Windows::Forms::Keys::NumPad3:button_three->PerformClick();	break;
-			case System::Windows::Forms::Keys::NumPad4:button_four->PerformClick();		break;
-			case System::Windows::Forms::Keys::NumPad5:button_five->PerformClick();		break;
-			case System::Windows::Forms::Keys::NumPad6:button_six->PerformClick();		break;
-			case System::Windows::Forms::Keys::NumPad7:button_seven->PerformClick();	break;
-			case System::Windows::Forms::Keys::NumPad8:button_eight->PerformClick();	break;
-			case System::Windows::Forms::Keys::NumPad9:button_nine->PerformClick();		break;
-			//Number Keys
-			case System::Windows::Forms::Keys::D0:button_zero->PerformClick();			break;
-			case System::Windows::Forms::Keys::D1:button_one->PerformClick();			break;
-			case System::Windows::Forms::Keys::D2:button_two->PerformClick();			break;
-			case System::Windows::Forms::Keys::D3:button_three->PerformClick();			break;
-			case System::Windows::Forms::Keys::D4:button_four->PerformClick();			break;
-			case System::Windows::Forms::Keys::D5:button_five->PerformClick();			break;
-			case System::Windows::Forms::Keys::D6:button_six->PerformClick();			break;
-			case System::Windows::Forms::Keys::D7:button_seven->PerformClick();			break;
-			case System::Windows::Forms::Keys::D8:button_eight->PerformClick();			break;
-			case System::Windows::Forms::Keys::D9:button_nine->PerformClick();			break;
-			//Action Buttons
-			case System::Windows::Forms::Keys::Enter:button_equals->PerformClick();				break;
-			case System::Windows::Forms::Keys::Delete:button_clear_all->PerformClick();			break;
-			case System::Windows::Forms::Keys::Multiply:button_mutiplication->PerformClick();	break;
-			case System::Windows::Forms::Keys::Add:button_plus->PerformClick();					break;
-			case System::Windows::Forms::Keys::Subtract : button_minus->PerformClick();			break;
-			case System::Windows::Forms::Keys::Decimal:button_point->PerformClick();			break;
-			case System::Windows::Forms::Keys::Divide:button_division->PerformClick();			break;
-			case System::Windows::Forms::Keys::Oemplus:button_plus->PerformClick();				break;
-			case System::Windows::Forms::Keys::OemMinus:button_minus->PerformClick();			break;
-			case System::Windows::Forms::Keys::OemPeriod:button_point->PerformClick();			break;
-			case System::Windows::Forms::Keys::Back:button_erase->PerformClick();				break;
-
-			default:
-				break;
-			}
-		//}
-		e->Handled = true;
+	switch (e->KeyCode){
+	//Numpad number Keys
+		case System::Windows::Forms::Keys::NumPad0:button_zero->PerformClick();		break;
+		case System::Windows::Forms::Keys::NumPad1:button_one->PerformClick();		break;
+		case System::Windows::Forms::Keys::NumPad2:button_two->PerformClick();		break;
+		case System::Windows::Forms::Keys::NumPad3:button_three->PerformClick();	break;
+		case System::Windows::Forms::Keys::NumPad4:button_four->PerformClick();		break;
+		case System::Windows::Forms::Keys::NumPad5:button_five->PerformClick();		break;
+		case System::Windows::Forms::Keys::NumPad6:button_six->PerformClick();		break;
+		case System::Windows::Forms::Keys::NumPad7:button_seven->PerformClick();	break;
+		case System::Windows::Forms::Keys::NumPad8:button_eight->PerformClick();	break;
+		case System::Windows::Forms::Keys::NumPad9:button_nine->PerformClick();		break;
+		//Number Keys
+		case System::Windows::Forms::Keys::D0:button_zero->PerformClick();			break;
+		case System::Windows::Forms::Keys::D1:button_one->PerformClick();			break;
+		case System::Windows::Forms::Keys::D2:button_two->PerformClick();			break;
+		case System::Windows::Forms::Keys::D3:button_three->PerformClick();			break;
+		case System::Windows::Forms::Keys::D4:button_four->PerformClick();			break;
+		case System::Windows::Forms::Keys::D5:button_five->PerformClick();			break;
+		case System::Windows::Forms::Keys::D6:button_six->PerformClick();			break;
+		case System::Windows::Forms::Keys::D7:button_seven->PerformClick();			break;
+		case System::Windows::Forms::Keys::D8:button_eight->PerformClick();			break;
+		case System::Windows::Forms::Keys::D9:button_nine->PerformClick();			break;
+		//Action Buttons
+		case System::Windows::Forms::Keys::Enter:button_equals->PerformClick();				break;
+		case System::Windows::Forms::Keys::Delete:button_clear_all->PerformClick();			break;
+		case System::Windows::Forms::Keys::Multiply:button_mutiplication->PerformClick();	break;
+		case System::Windows::Forms::Keys::Add:button_plus->PerformClick();					break;
+		case System::Windows::Forms::Keys::Subtract : button_minus->PerformClick();			break;
+		case System::Windows::Forms::Keys::Decimal:button_point->PerformClick();			break;
+		case System::Windows::Forms::Keys::Divide:button_division->PerformClick();			break;
+		case System::Windows::Forms::Keys::Oemplus:button_plus->PerformClick();				break;
+		case System::Windows::Forms::Keys::OemMinus:button_minus->PerformClick();			break;
+		case System::Windows::Forms::Keys::OemPeriod:button_point->PerformClick();			break;
+		case System::Windows::Forms::Keys::Back:button_erase->PerformClick();				break;
+	default:
+		break;
+	}
+	e->Handled = true;
 	}
 
 	private: System::Void button_clear_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -680,29 +680,53 @@ namespace Convo {
 		if (firstValue!=System::Double::MinValue&& action!=' ') {
 			switch (action){
 			case '+':
-				label_action->Text += label_result_input->Text;
-				secondValue = System::Convert::ToDouble(label_result_input->Text);
+				if (calculated) {
+					firstValue = System::Convert::ToDouble(label_result_input->Text);
+					label_action->Text = System::Convert::ToString(firstValue) + " + " + System::Convert::ToString(secondValue);
+				}else {
+					label_action->Text += label_result_input->Text;
+					secondValue = System::Convert::ToDouble(label_result_input->Text);
+				}
 				label_result_input->Text =System::Convert::ToString(firstValue + secondValue);
 				break;
 			case '-': 
-				label_action->Text += label_result_input->Text;
-				secondValue = System::Convert::ToDouble(label_result_input->Text);
+				if (calculated) {
+					firstValue = System::Convert::ToDouble(label_result_input->Text);
+					label_action->Text = System::Convert::ToString(firstValue) + " - " + System::Convert::ToString(secondValue);
+				}
+				else {
+					label_action->Text += label_result_input->Text;
+					secondValue = System::Convert::ToDouble(label_result_input->Text);
+				}
 				label_result_input->Text = System::Convert::ToString(firstValue - secondValue);
 				break;
 			case '/': 
-				label_action->Text += label_result_input->Text;
-				secondValue = System::Convert::ToDouble(label_result_input->Text);
+				if (calculated) {
+					firstValue = System::Convert::ToDouble(label_result_input->Text);
+					label_action->Text = System::Convert::ToString(firstValue) + " / " + System::Convert::ToString(secondValue);
+				}
+				else {
+					label_action->Text += label_result_input->Text;
+					secondValue = System::Convert::ToDouble(label_result_input->Text);
+				}
 				label_result_input->Text = System::Convert::ToString(firstValue / secondValue);
 				break;
 			case '*': 
-				label_action->Text += label_result_input->Text;
-				secondValue = System::Convert::ToDouble(label_result_input->Text);
+				if (calculated) {
+					firstValue = System::Convert::ToDouble(label_result_input->Text);
+					label_action->Text = System::Convert::ToString(firstValue) + " * " + System::Convert::ToString(secondValue);
+				}
+				else {
+					label_action->Text += label_result_input->Text;
+					secondValue = System::Convert::ToDouble(label_result_input->Text);
+				}
 				label_result_input->Text = System::Convert::ToString(firstValue * secondValue);
 				break;
 			default:
 				break;
 			}
 		}
+		calculated = true;
 	}
 	private: System::Void button_plus_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (label_result_input->Text->Length > 0) {
@@ -712,6 +736,7 @@ namespace Convo {
 		}
 		label_result_input->ResetText();
 	}
+
 	private: System::Void button_minus_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (label_result_input->Text->Length > 0) {
 			firstValue = System::Convert::ToDouble(label_result_input->Text);
@@ -729,6 +754,7 @@ namespace Convo {
 		}
 		label_result_input->ResetText();
 	}
+
 	private: System::Void button_division_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (label_result_input->Text->Length > 0) {
 			firstValue = System::Convert::ToDouble(label_result_input->Text);
@@ -737,6 +763,7 @@ namespace Convo {
 		}
 		label_result_input->ResetText();
 	}
+
 	private: System::Void button_erase_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (label_result_input->Text->Length > 0) {
 			label_result_input->Text = label_result_input->Text->Substring(0, label_result_input->Text->Length - 1);
@@ -748,36 +775,100 @@ namespace Convo {
 		secondValue = System::Double::MinValue;
 		label_action->ResetText();
 		label_result_input->ResetText();
+		calculated = false;
 	}
+
 	private: System::Void button_zero_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "0";
 	}
 	private: System::Void button_one_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "1";
 	}
 	private: System::Void button_two_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "2";
 	}
 	private: System::Void button_three_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "3";
 	}
 	private: System::Void button_four_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "4";
 	}
 	private: System::Void button_five_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "5";
 	}
 	private: System::Void button_six_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "6";
 	}
 	private: System::Void button_seven_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "7";
 	}
 	private: System::Void button_eight_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "8";
 	}
 	private: System::Void button_nine_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (calculated) {
+			button_clear_all->PerformClick();
+		}
 		label_result_input->Text += "9";
+	}
+	private: System::Void button_plus_minus_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (label_result_input->Text->Contains("-")) {
+			label_result_input->Text = label_result_input->Text->Substring(1);
+		} else {
+			label_result_input->Text = label_result_input->Text->Insert(0, "-");
+		}
+	}
+
+	private: System::Void button_one_divided_by_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (label_result_input->Text->Length > 0) {
+			double val;
+			val = System::Double::Parse(label_result_input->Text);
+			label_action->Text =  L"⅟" + System::Convert::ToString(val);
+			label_result_input->Text =  System::Convert::ToString(1 / val);
+		}
+	}
+	private: System::Void button_power_two_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (label_result_input->Text->Length > 0) {
+			double val;
+			val = System::Double::Parse(label_result_input->Text);
+			label_action->Text = System::Convert::ToString(val)+ L"²";
+			label_result_input->Text = System::Convert::ToString(System::Math::Pow(val,2));
+		}
+	}
+	private: System::Void button_suqre_root_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (label_result_input->Text->Length > 0) {
+			double val;
+			val = System::Double::Parse(label_result_input->Text);
+			label_action->Text = L"√" + System::Convert::ToString(val);
+			label_result_input->Text = System::Convert::ToString(System::Math::Sqrt(val));
+		}
 	}
 };
 }

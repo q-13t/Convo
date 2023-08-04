@@ -23,10 +23,8 @@
     <ClInclude Include="MainForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resource.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
+    <ClInclude Include="MyForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

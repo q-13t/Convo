@@ -18,6 +18,45 @@ namespace Convo {
 	public:
 		MyForm(void)
 		{
+			lenghts.Add("Millimeter", "millimeter");
+			lenghts.Add("Centimeter", "centimeter");
+			lenghts.Add("Decimeter", "decimeter");
+			lenghts.Add("Meter", "meter");
+			lenghts.Add("Kilometer", "kilometer");
+			lenghts.Add("Inch", "inch");
+			lenghts.Add("Feet", "feet");
+			lenghts.Add("Yard", "yard");
+			lenghts.Add("Mile", "mile");
+
+			weights.Add("Milligram","milligram");
+			weights.Add("Gram", "gram");
+			weights.Add("Kilogram", "kilogram");
+			weights.Add("Ton", "ton");
+			weights.Add("Ounce", "ounce");
+			weights.Add("Pound", "pound");
+			
+			areas.Add("Millimeter","millimeter");
+			areas.Add("Centimeter", "centimeter");
+			areas.Add("Meter", "meter");
+			areas.Add("Acre", "acre");
+			areas.Add("Hectare", "hectare");
+			areas.Add("Kilometer", "kilometer");
+			areas.Add("Inch", "inch");
+			areas.Add("Feet", "feet");
+			areas.Add("Yard", "yard");
+			areas.Add("Mile", "mile");
+
+			speeds.Add("Centimeters Per Second","cps");
+			speeds.Add("Meters Per Second", "mps");
+			speeds.Add("Kilometers Per Hour", "kph");
+			speeds.Add("Feet Per Second", "fps");
+			speeds.Add("Miles Per Hour", "mph");
+			speeds.Add("Knots", "k");
+			speeds.Add("Mach (SI standard)", "m");
+
+			temperatures.Add("Celsius","felsius");
+			temperatures.Add("Fahrenheit","fahrenheit");
+			temperatures.Add("Kelvin","kelvin");
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -43,7 +82,7 @@ namespace Convo {
 	private: Panel^ panel_conversion;
 	private: Label^ label_conversion_result;
 	private: Panel^ panel_basic;
-	private:ToolStripButton^ button_Speed;
+	private: ToolStripButton^ button_Speed;
 	private: ToolStripButton^ button_Weight;
 	private: ToolStripButton^ button_Temperature;
 	private: ToolStripButton^ button_Area;
@@ -51,29 +90,27 @@ namespace Convo {
 	private: Label^ label_conversion_input;
 	private: TableLayoutPanel^ tableLayoutPanel1;
 	private: SplitContainer^ splitContainer1;
-	private: Button^ button14;
-	private: Button^ button13;
-	private: Button^ button12;
-	private: Button^ button11;
-	private: Button^ button10;
-	private: Button^ button9;
-	private: Button^ button8;
-	private: Button^ button7;
-	private: Button^ button6;
-	private: Button^ button5;
-	private: Button^ button4;
-	private: Button^ button3;
-	private: Button^ button2;
+	private: Button^ convert_button_zero;
+	private: Button^ convert_button_one;
+	private: Button^ convert_button_two;
+	private: Button^ convert_button_three;
+	private: Button^ convert_button_four;
+	private: Button^ convert_button_five;
+	private: Button^ convert_button_six;
+	private: Button^ convert_button_seven;
+	private: Button^ convert_button_eight;
+	private: Button^ convert_button_nine;
+	private: Button^ convert_button_period;
+	private: Button^ convert_button_erase;
+	private: Button^ convert_button_erase_everything;
+
 	private: ComboBox^ combo_from;
 	private: ComboBox^ combo_to;
 	private: Label^ label_conversion_from;
 	private: Label^ label_conversion_to;
 	private: SplitContainer^ splitContainer2;
-	private: System::Windows::Forms::Label^ basic_label_result_input;
-	private: System::Windows::Forms::Label^ basic_label_action;
-
-
-
+	private: Label^ basic_label_result_input;
+	private: Label^ basic_label_action;
 	private: TableLayoutPanel^ tableLayoutPanel2;
 	private: Button^ basic_button_two;
 	private: Button^ basic_button_one;
@@ -104,6 +141,13 @@ namespace Convo {
 	private: double secondValue;
 	private: char action;
 	private: bool calculated;
+	private: Hashtable lenghts;
+	private: Hashtable weights;
+	private: Hashtable areas;
+	private: Hashtable temperatures;
+	private: Hashtable speeds;
+		   
+		   
 #pragma region Windows Form Designer generated code
 		   /// <summary>
 		   /// Required method for Designer support - do not modify
@@ -130,19 +174,19 @@ namespace Convo {
 			   this->label_conversion_to = (gcnew System::Windows::Forms::Label());
 			   this->label_conversion_result = (gcnew System::Windows::Forms::Label());
 			   this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
-			   this->button14 = (gcnew System::Windows::Forms::Button());
-			   this->button13 = (gcnew System::Windows::Forms::Button());
-			   this->button12 = (gcnew System::Windows::Forms::Button());
-			   this->button11 = (gcnew System::Windows::Forms::Button());
-			   this->button10 = (gcnew System::Windows::Forms::Button());
-			   this->button9 = (gcnew System::Windows::Forms::Button());
-			   this->button8 = (gcnew System::Windows::Forms::Button());
-			   this->button7 = (gcnew System::Windows::Forms::Button());
-			   this->button6 = (gcnew System::Windows::Forms::Button());
-			   this->button5 = (gcnew System::Windows::Forms::Button());
-			   this->button4 = (gcnew System::Windows::Forms::Button());
-			   this->button3 = (gcnew System::Windows::Forms::Button());
-			   this->button2 = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_period = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_zero = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_one = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_two = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_three = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_six = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_five = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_four = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_seven = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_eight = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_nine = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_erase = (gcnew System::Windows::Forms::Button());
+			   this->convert_button_erase_everything = (gcnew System::Windows::Forms::Button());
 			   this->panel_basic = (gcnew System::Windows::Forms::Panel());
 			   this->splitContainer2 = (gcnew System::Windows::Forms::SplitContainer());
 			   this->basic_label_action = (gcnew System::Windows::Forms::Label());
@@ -209,7 +253,7 @@ namespace Convo {
 			   this->button_controll_left_menu->Name = L"button_controll_left_menu";
 			   this->button_controll_left_menu->Size = System::Drawing::Size(70, 22);
 			   this->button_controll_left_menu->Text = L"Hide/Show";
-			   this->button_controll_left_menu->Click += gcnew System::EventHandler(this, &MyForm::toolStripButton1_Click);
+			   this->button_controll_left_menu->Click += gcnew System::EventHandler(this, &MyForm::button_controll_left_menu_Click);
 			   // 
 			   // label_top_operaion
 			   // 
@@ -330,6 +374,7 @@ namespace Convo {
 			   // combo_from
 			   // 
 			   this->combo_from->Dock = System::Windows::Forms::DockStyle::Bottom;
+			   this->combo_from->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			   this->combo_from->FormattingEnabled = true;
 			   this->combo_from->Location = System::Drawing::Point(65, 26);
 			   this->combo_from->Name = L"combo_from";
@@ -349,16 +394,17 @@ namespace Convo {
 			   // label_conversion_input
 			   // 
 			   this->label_conversion_input->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->label_conversion_input->Font = (gcnew System::Drawing::Font(L"Roboto Slab ExtraLight", 12));
 			   this->label_conversion_input->Location = System::Drawing::Point(0, 0);
 			   this->label_conversion_input->Name = L"label_conversion_input";
 			   this->label_conversion_input->Size = System::Drawing::Size(306, 29);
 			   this->label_conversion_input->TabIndex = 1;
-			   this->label_conversion_input->Text = L"INPUT";
 			   this->label_conversion_input->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			   // 
 			   // combo_to
 			   // 
 			   this->combo_to->Dock = System::Windows::Forms::DockStyle::Bottom;
+			   this->combo_to->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			   this->combo_to->FormattingEnabled = true;
 			   this->combo_to->Location = System::Drawing::Point(65, 28);
 			   this->combo_to->Name = L"combo_to";
@@ -378,11 +424,11 @@ namespace Convo {
 			   // label_conversion_result
 			   // 
 			   this->label_conversion_result->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->label_conversion_result->Font = (gcnew System::Drawing::Font(L"Roboto Slab SemiBold", 20.25F, System::Drawing::FontStyle::Bold));
 			   this->label_conversion_result->Location = System::Drawing::Point(0, 0);
 			   this->label_conversion_result->Name = L"label_conversion_result";
 			   this->label_conversion_result->Size = System::Drawing::Size(306, 27);
 			   this->label_conversion_result->TabIndex = 0;
-			   this->label_conversion_result->Text = L"RESULT";
 			   this->label_conversion_result->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			   // 
 			   // tableLayoutPanel1
@@ -398,20 +444,20 @@ namespace Convo {
 				   33.33334F)));
 			   this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
 				   33.33334F)));
-			   this->tableLayoutPanel1->Controls->Add(this->button14, 2, 4);
-			   this->tableLayoutPanel1->Controls->Add(this->button13, 1, 4);
-			   this->tableLayoutPanel1->Controls->Add(this->button12, 0, 3);
-			   this->tableLayoutPanel1->Controls->Add(this->button11, 0, 3);
-			   this->tableLayoutPanel1->Controls->Add(this->button10, 0, 3);
-			   this->tableLayoutPanel1->Controls->Add(this->button9, 0, 2);
-			   this->tableLayoutPanel1->Controls->Add(this->button8, 0, 2);
-			   this->tableLayoutPanel1->Controls->Add(this->button7, 0, 2);
-			   this->tableLayoutPanel1->Controls->Add(this->button6, 0, 1);
-			   this->tableLayoutPanel1->Controls->Add(this->button5, 0, 1);
-			   this->tableLayoutPanel1->Controls->Add(this->button4, 0, 1);
-			   this->tableLayoutPanel1->Controls->Add(this->button3, 2, 0);
-			   this->tableLayoutPanel1->Controls->Add(this->button2, 1, 0);
-			   this->tableLayoutPanel1->Location = System::Drawing::Point(0, 100);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_period, 2, 4);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_zero, 1, 4);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_one, 0, 3);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_two, 0, 3);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_three, 0, 3);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_six, 0, 2);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_five, 0, 2);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_four, 0, 2);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_seven, 0, 1);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_eight, 0, 1);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_nine, 0, 1);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_erase, 2, 0);
+			   this->tableLayoutPanel1->Controls->Add(this->convert_button_erase_everything, 1, 0);
+			   this->tableLayoutPanel1->Location = System::Drawing::Point(0, 106);
 			   this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			   this->tableLayoutPanel1->RowCount = 5;
 			   this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
@@ -419,138 +465,164 @@ namespace Convo {
 			   this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
 			   this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
 			   this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			   this->tableLayoutPanel1->Size = System::Drawing::Size(303, 433);
+			   this->tableLayoutPanel1->Size = System::Drawing::Size(303, 427);
 			   this->tableLayoutPanel1->TabIndex = 2;
 			   // 
-			   // button14
+			   // convert_button_period
 			   // 
-			   this->button14->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button14->Location = System::Drawing::Point(204, 347);
-			   this->button14->Name = L"button14";
-			   this->button14->Size = System::Drawing::Size(96, 83);
-			   this->button14->TabIndex = 13;
-			   this->button14->Text = L"button14";
-			   this->button14->UseVisualStyleBackColor = true;
+			   this->convert_button_period->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_period->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_period->Location = System::Drawing::Point(204, 343);
+			   this->convert_button_period->Name = L"convert_button_period";
+			   this->convert_button_period->Size = System::Drawing::Size(96, 81);
+			   this->convert_button_period->TabIndex = 13;
+			   this->convert_button_period->Text = L",";
+			   this->convert_button_period->UseVisualStyleBackColor = true;
+			   this->convert_button_period->Click += gcnew System::EventHandler(this, &MyForm::convert_button_period_Click);
 			   // 
-			   // button13
+			   // convert_button_zero
 			   // 
-			   this->button13->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button13->Location = System::Drawing::Point(103, 347);
-			   this->button13->Name = L"button13";
-			   this->button13->Size = System::Drawing::Size(95, 83);
-			   this->button13->TabIndex = 12;
-			   this->button13->Text = L"button13";
-			   this->button13->UseVisualStyleBackColor = true;
+			   this->convert_button_zero->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_zero->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_zero->Location = System::Drawing::Point(103, 343);
+			   this->convert_button_zero->Name = L"convert_button_zero";
+			   this->convert_button_zero->Size = System::Drawing::Size(95, 81);
+			   this->convert_button_zero->TabIndex = 12;
+			   this->convert_button_zero->Text = L"0";
+			   this->convert_button_zero->UseVisualStyleBackColor = true;
+			   this->convert_button_zero->Click += gcnew System::EventHandler(this, &MyForm::convert_button_zero_Click);
 			   // 
-			   // button12
+			   // convert_button_one
 			   // 
-			   this->button12->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button12->Location = System::Drawing::Point(3, 261);
-			   this->button12->Name = L"button12";
-			   this->button12->Size = System::Drawing::Size(94, 80);
-			   this->button12->TabIndex = 11;
-			   this->button12->Text = L"button12";
-			   this->button12->UseVisualStyleBackColor = true;
+			   this->convert_button_one->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_one->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_one->Location = System::Drawing::Point(3, 258);
+			   this->convert_button_one->Name = L"convert_button_one";
+			   this->convert_button_one->Size = System::Drawing::Size(94, 79);
+			   this->convert_button_one->TabIndex = 11;
+			   this->convert_button_one->Text = L"1";
+			   this->convert_button_one->UseVisualStyleBackColor = true;
+			   this->convert_button_one->Click += gcnew System::EventHandler(this, &MyForm::convert_button_one_Click);
 			   // 
-			   // button11
+			   // convert_button_two
 			   // 
-			   this->button11->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button11->Location = System::Drawing::Point(103, 261);
-			   this->button11->Name = L"button11";
-			   this->button11->Size = System::Drawing::Size(95, 80);
-			   this->button11->TabIndex = 10;
-			   this->button11->Text = L"button11";
-			   this->button11->UseVisualStyleBackColor = true;
+			   this->convert_button_two->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_two->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_two->Location = System::Drawing::Point(103, 258);
+			   this->convert_button_two->Name = L"convert_button_two";
+			   this->convert_button_two->Size = System::Drawing::Size(95, 79);
+			   this->convert_button_two->TabIndex = 10;
+			   this->convert_button_two->Text = L"2";
+			   this->convert_button_two->UseVisualStyleBackColor = true;
+			   this->convert_button_two->Click += gcnew System::EventHandler(this, &MyForm::convert_button_two_Click);
 			   // 
-			   // button10
+			   // convert_button_three
 			   // 
-			   this->button10->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button10->Location = System::Drawing::Point(204, 261);
-			   this->button10->Name = L"button10";
-			   this->button10->Size = System::Drawing::Size(96, 80);
-			   this->button10->TabIndex = 9;
-			   this->button10->Text = L"button10";
-			   this->button10->UseVisualStyleBackColor = true;
+			   this->convert_button_three->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_three->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_three->Location = System::Drawing::Point(204, 258);
+			   this->convert_button_three->Name = L"convert_button_three";
+			   this->convert_button_three->Size = System::Drawing::Size(96, 79);
+			   this->convert_button_three->TabIndex = 9;
+			   this->convert_button_three->Text = L"3";
+			   this->convert_button_three->UseVisualStyleBackColor = true;
+			   this->convert_button_three->Click += gcnew System::EventHandler(this, &MyForm::convert_button_three_Click);
 			   // 
-			   // button9
+			   // convert_button_six
 			   // 
-			   this->button9->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button9->Location = System::Drawing::Point(204, 175);
-			   this->button9->Name = L"button9";
-			   this->button9->Size = System::Drawing::Size(96, 80);
-			   this->button9->TabIndex = 8;
-			   this->button9->Text = L"button9";
-			   this->button9->UseVisualStyleBackColor = true;
+			   this->convert_button_six->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_six->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_six->Location = System::Drawing::Point(204, 173);
+			   this->convert_button_six->Name = L"convert_button_six";
+			   this->convert_button_six->Size = System::Drawing::Size(96, 79);
+			   this->convert_button_six->TabIndex = 8;
+			   this->convert_button_six->Text = L"6";
+			   this->convert_button_six->UseVisualStyleBackColor = true;
+			   this->convert_button_six->Click += gcnew System::EventHandler(this, &MyForm::convert_button_six_Click);
 			   // 
-			   // button8
+			   // convert_button_five
 			   // 
-			   this->button8->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button8->Location = System::Drawing::Point(103, 175);
-			   this->button8->Name = L"button8";
-			   this->button8->Size = System::Drawing::Size(95, 80);
-			   this->button8->TabIndex = 7;
-			   this->button8->Text = L"button8";
-			   this->button8->UseVisualStyleBackColor = true;
+			   this->convert_button_five->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_five->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_five->Location = System::Drawing::Point(103, 173);
+			   this->convert_button_five->Name = L"convert_button_five";
+			   this->convert_button_five->Size = System::Drawing::Size(95, 79);
+			   this->convert_button_five->TabIndex = 7;
+			   this->convert_button_five->Text = L"5";
+			   this->convert_button_five->UseVisualStyleBackColor = true;
+			   this->convert_button_five->Click += gcnew System::EventHandler(this, &MyForm::convert_button_five_Click);
 			   // 
-			   // button7
+			   // convert_button_four
 			   // 
-			   this->button7->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button7->Location = System::Drawing::Point(3, 175);
-			   this->button7->Name = L"button7";
-			   this->button7->Size = System::Drawing::Size(94, 80);
-			   this->button7->TabIndex = 6;
-			   this->button7->Text = L"button7";
-			   this->button7->UseVisualStyleBackColor = true;
+			   this->convert_button_four->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_four->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_four->Location = System::Drawing::Point(3, 173);
+			   this->convert_button_four->Name = L"convert_button_four";
+			   this->convert_button_four->Size = System::Drawing::Size(94, 79);
+			   this->convert_button_four->TabIndex = 6;
+			   this->convert_button_four->Text = L"4";
+			   this->convert_button_four->UseVisualStyleBackColor = true;
+			   this->convert_button_four->Click += gcnew System::EventHandler(this, &MyForm::convert_button_four_Click);
 			   // 
-			   // button6
+			   // convert_button_seven
 			   // 
-			   this->button6->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button6->Location = System::Drawing::Point(3, 89);
-			   this->button6->Name = L"button6";
-			   this->button6->Size = System::Drawing::Size(94, 80);
-			   this->button6->TabIndex = 5;
-			   this->button6->Text = L"button6";
-			   this->button6->UseVisualStyleBackColor = true;
+			   this->convert_button_seven->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_seven->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_seven->Location = System::Drawing::Point(3, 88);
+			   this->convert_button_seven->Name = L"convert_button_seven";
+			   this->convert_button_seven->Size = System::Drawing::Size(94, 79);
+			   this->convert_button_seven->TabIndex = 5;
+			   this->convert_button_seven->Text = L"7";
+			   this->convert_button_seven->UseVisualStyleBackColor = true;
+			   this->convert_button_seven->Click += gcnew System::EventHandler(this, &MyForm::convert_button_seven_Click);
 			   // 
-			   // button5
+			   // convert_button_eight
 			   // 
-			   this->button5->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button5->Location = System::Drawing::Point(103, 89);
-			   this->button5->Name = L"button5";
-			   this->button5->Size = System::Drawing::Size(95, 80);
-			   this->button5->TabIndex = 4;
-			   this->button5->Text = L"button5";
-			   this->button5->UseVisualStyleBackColor = true;
+			   this->convert_button_eight->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_eight->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_eight->Location = System::Drawing::Point(103, 88);
+			   this->convert_button_eight->Name = L"convert_button_eight";
+			   this->convert_button_eight->Size = System::Drawing::Size(95, 79);
+			   this->convert_button_eight->TabIndex = 4;
+			   this->convert_button_eight->Text = L"8";
+			   this->convert_button_eight->UseVisualStyleBackColor = true;
+			   this->convert_button_eight->Click += gcnew System::EventHandler(this, &MyForm::convert_button_eight_Click);
 			   // 
-			   // button4
+			   // convert_button_nine
 			   // 
-			   this->button4->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button4->Location = System::Drawing::Point(204, 89);
-			   this->button4->Name = L"button4";
-			   this->button4->Size = System::Drawing::Size(96, 80);
-			   this->button4->TabIndex = 3;
-			   this->button4->Text = L"button4";
-			   this->button4->UseVisualStyleBackColor = true;
+			   this->convert_button_nine->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_nine->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_nine->Location = System::Drawing::Point(204, 88);
+			   this->convert_button_nine->Name = L"convert_button_nine";
+			   this->convert_button_nine->Size = System::Drawing::Size(96, 79);
+			   this->convert_button_nine->TabIndex = 3;
+			   this->convert_button_nine->Text = L"9";
+			   this->convert_button_nine->UseVisualStyleBackColor = true;
+			   this->convert_button_nine->Click += gcnew System::EventHandler(this, &MyForm::convert_button_nine_Click);
 			   // 
-			   // button3
+			   // convert_button_erase
 			   // 
-			   this->button3->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button3->Location = System::Drawing::Point(204, 3);
-			   this->button3->Name = L"button3";
-			   this->button3->Size = System::Drawing::Size(96, 80);
-			   this->button3->TabIndex = 2;
-			   this->button3->Text = L"button3";
-			   this->button3->UseVisualStyleBackColor = true;
+			   this->convert_button_erase->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_erase->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_erase->Location = System::Drawing::Point(204, 3);
+			   this->convert_button_erase->Name = L"convert_button_erase";
+			   this->convert_button_erase->Size = System::Drawing::Size(96, 79);
+			   this->convert_button_erase->TabIndex = 2;
+			   this->convert_button_erase->Text = L"<=";
+			   this->convert_button_erase->UseVisualStyleBackColor = true;
+			   this->convert_button_erase->Click += gcnew System::EventHandler(this, &MyForm::convert_button_erase_Click);
 			   // 
-			   // button2
+			   // convert_button_erase_everything
 			   // 
-			   this->button2->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->button2->Location = System::Drawing::Point(103, 3);
-			   this->button2->Name = L"button2";
-			   this->button2->Size = System::Drawing::Size(95, 80);
-			   this->button2->TabIndex = 1;
-			   this->button2->Text = L"button2";
-			   this->button2->UseVisualStyleBackColor = true;
+			   this->convert_button_erase_everything->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_erase_everything->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
+			   this->convert_button_erase_everything->Location = System::Drawing::Point(103, 3);
+			   this->convert_button_erase_everything->Name = L"convert_button_erase_everything";
+			   this->convert_button_erase_everything->Size = System::Drawing::Size(95, 79);
+			   this->convert_button_erase_everything->TabIndex = 1;
+			   this->convert_button_erase_everything->Text = L"CE";
+			   this->convert_button_erase_everything->UseVisualStyleBackColor = true;
+			   this->convert_button_erase_everything->Click += gcnew System::EventHandler(this, &MyForm::convert_button_erase_everything_Click);
 			   // 
 			   // panel_basic
 			   // 
@@ -946,13 +1018,15 @@ namespace Convo {
 			   this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			   this->ClientSize = System::Drawing::Size(384, 561);
-			   this->Controls->Add(this->panel_basic);
 			   this->Controls->Add(this->panel_conversion);
+			   this->Controls->Add(this->panel_basic);
 			   this->Controls->Add(this->menu_left);
 			   this->Controls->Add(this->menu_top);
+			   this->KeyPreview = true;
 			   this->MinimumSize = System::Drawing::Size(400, 600);
 			   this->Name = L"MyForm";
 			   this->Text = L"MyForm";
+			   this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::KeyListener);
 			   this->menu_top->ResumeLayout(false);
 			   this->menu_top->PerformLayout();
 			   this->menu_left->ResumeLayout(false);
@@ -975,7 +1049,7 @@ namespace Convo {
 		   }
 #pragma endregion
 
-	private: System::Void toolStripButton1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: Void button_controll_left_menu_Click(Object^ sender, EventArgs^ e) {
 		if (menu_left->Visible && this->Width < 600) {
 			menu_left->Visible = false;
 		}else {
@@ -984,233 +1058,452 @@ namespace Convo {
 		GC::Collect();
 	}
 
-	private: System::Void menu_left_ItemClicked(System::Object^ sender, System::Windows::Forms::ToolStripItemClickedEventArgs^ e) {
+	private: Void menu_left_ItemClicked(Object^ sender, ToolStripItemClickedEventArgs^ e) {
+		String^ selected = e->ClickedItem->Text;
 		if (e->ClickedItem->Name->ToString()->Equals("button_basic")) {
 			panel_basic->Show();
 			panel_basic->Enabled = true;
 			panel_conversion->Hide();
 			panel_conversion->Enabled = false;
+			basic_label_result_input->ResetText();
 		}else {
 			panel_basic->Hide();
 			panel_basic->Enabled = false;
 			panel_conversion->Show();
 			panel_conversion->Enabled = true;
+
+			combo_from->Items->Clear();
+			combo_to->Items->Clear();
+			if (selected->Equals("Length")) {
+				for each (DictionaryEntry ^ val in lenghts) {
+					combo_from->Items->Add(val->Key);
+				}
+				for each (DictionaryEntry ^ val in lenghts) {
+					combo_to->Items->Add(val->Key);
+				}
+			}
+			else if (selected->Equals("Weight")) {
+				for each (DictionaryEntry ^ val in weights) {
+					combo_from->Items->Add(val->Key);
+				}
+				for each (DictionaryEntry ^ val in weights) {
+					combo_to->Items->Add(val->Key);
+				}
+			}
+			else if (selected->Equals("Temperature")) {
+				for each (DictionaryEntry ^ val in temperatures) {
+					combo_from->Items->Add(val->Key);
+				}
+				for each (DictionaryEntry ^ val in temperatures) {
+					combo_to->Items->Add(val->Key);
+				}
+			}
+			else if (selected->Equals("Area")) {
+				for each (DictionaryEntry ^ val in areas) {
+					combo_from->Items->Add(val->Key);
+				}
+				for each (DictionaryEntry ^ val in areas) {
+					combo_to->Items->Add(val->Key);
+				}
+			}
+			else if (selected->Equals("Speed")) {
+				for each (DictionaryEntry ^ val in speeds) {
+					combo_from->Items->Add(val->Key);
+				}
+				for each (DictionaryEntry ^ val in speeds) {
+					combo_to->Items->Add(val->Key);
+				}
+			}
+			combo_to->SelectedIndex = 0;
+			combo_from->SelectedIndex = 0;
+			label_conversion_input->ResetText();
 		}
-		label_top_operaion->Text = e->ClickedItem->Text;
+		
+		label_top_operaion->Text = selected;
 		GC::Collect();
 	}
+	
+	private: Void basic_button_equals_Click(Object^ sender, EventArgs^ e) {
+			if (firstValue != System::Double::MinValue && action != ' ') {
+				switch (action) {
+				case '+':
+					if (calculated) {
+						firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
+						basic_label_action->Text = System::Convert::ToString(firstValue) + " + " + System::Convert::ToString(secondValue);
+					}
+					else {
+						basic_label_action->Text += basic_label_result_input->Text;
+						secondValue = System::Convert::ToDouble(basic_label_result_input->Text);
+					}
+					basic_label_result_input->Text = System::Convert::ToString(firstValue + secondValue);
+					break;
+				case '-':
+					if (calculated) {
+						firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
+						basic_label_action->Text = System::Convert::ToString(firstValue) + " - " + System::Convert::ToString(secondValue);
+					}
+					else {
+						basic_label_action->Text += basic_label_result_input->Text;
+						secondValue = System::Convert::ToDouble(basic_label_result_input->Text);
+					}
+					basic_label_result_input->Text = System::Convert::ToString(firstValue - secondValue);
+					break;
+				case '/':
+					if (calculated) {
+						firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
+						basic_label_action->Text = System::Convert::ToString(firstValue) + " / " + System::Convert::ToString(secondValue);
+					}
+					else {
+						basic_label_action->Text += basic_label_result_input->Text;
+						secondValue = System::Convert::ToDouble(basic_label_result_input->Text);
+					}
+					basic_label_result_input->Text = System::Convert::ToString(firstValue / secondValue);
+					break;
+				case '*':
+					if (calculated) {
+						firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
+						basic_label_action->Text = System::Convert::ToString(firstValue) + " * " + System::Convert::ToString(secondValue);
+					}
+					else {
+						basic_label_action->Text += basic_label_result_input->Text;
+						secondValue = System::Convert::ToDouble(basic_label_result_input->Text);
+					}
+					basic_label_result_input->Text = System::Convert::ToString(firstValue * secondValue);
+					break;
+				default:
+					break;
+				}
+			}
+			calculated = true;
+		}
+	
+	private: Void basic_button_period_Click(Object^ sender, EventArgs^ e) {
+			if (!basic_label_result_input->Text->Contains(",")) {
+				basic_label_result_input->Text += ",";
+			}
+		}
+	
+	private: Void basic_button_addition_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Length > 0) {
+				firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
+				action = '+';
+				basic_label_action->Text = basic_label_result_input->Text + " + ";
+			}
+			basic_label_result_input->ResetText();
+		}
+	
+	private: Void basic_button_subtraction_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Length > 0) {
+				firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
+				action = '-';
+				basic_label_action->Text = basic_label_result_input->Text + " - ";
+			}
+			basic_label_result_input->ResetText();
+		}
+	
+	private: Void basic_button_plus_minus_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Contains("-")) {
+				basic_label_result_input->Text = basic_label_result_input->Text->Substring(1);
+			}
+			else {
+				basic_label_result_input->Text = basic_label_result_input->Text->Insert(0, "-");
+			}
+		}
+	
+	private: Void basic_button_miltiplication_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Length > 0) {
+				firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
+				action = '*';
+				basic_label_action->Text = basic_label_result_input->Text + " * ";
+			}
+			basic_label_result_input->ResetText();
+		}
+	
+	private: Void basic_button_division_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Length > 0) {
+				firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
+				action = '/';
+				basic_label_action->Text = basic_label_result_input->Text + " / ";
+			}
+			basic_label_result_input->ResetText();
+		}
+	
+	private: Void basic_button_one_divided_by_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Length > 0) {
+				double val;
+				val = System::Double::Parse(basic_label_result_input->Text);
+				basic_label_action->Text = L"⅟" + System::Convert::ToString(val);
+				basic_label_result_input->Text = System::Convert::ToString(1 / val);
+			}
+		}
+	
+	private: Void basic_button_power_two_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Length > 0) {
+				double val;
+				val = System::Double::Parse(basic_label_result_input->Text);
+				basic_label_action->Text = System::Convert::ToString(val) + L"²";
+				basic_label_result_input->Text = System::Convert::ToString(System::Math::Pow(val, 2));
+			}
+		}
+	
+	private: Void basic_button_square_root_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Length > 0) {
+				double val;
+				val = System::Double::Parse(basic_label_result_input->Text);
+				basic_label_action->Text = L"√" + System::Convert::ToString(val);
+				basic_label_result_input->Text = System::Convert::ToString(System::Math::Sqrt(val));
+			}
+		}
+	
+	private: Void basic_button_percent_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Length > 0) {
+				double val;
+				val = System::Double::Parse(basic_label_result_input->Text);
+				basic_label_action->Text = L"%" + System::Convert::ToString(val);
+				if ((int)val % 2) {
+					basic_label_result_input->Text = "Odd";
+				}else {
+					basic_label_result_input->Text = "Even";
+				}
+			}
+			calculated = true;
+		}
+	
+	private: Void basic_button_delete_Click(Object^ sender, EventArgs^ e) {
+			if (basic_label_result_input->Text->Length > 0) {
+				basic_label_result_input->Text = basic_label_result_input->Text->Substring(0, basic_label_result_input->Text->Length - 1);
+			}
+		}
+	
+	private: Void basic_button_clear_Click(Object^ sender, EventArgs^ e) {
+			basic_label_result_input->ResetText();
+		}
+	
+	private: Void basic_button_clear_everything_Click(Object^ sender, EventArgs^ e) {
+			action = ' ';
+			firstValue = System::Double::MinValue;
+			secondValue = System::Double::MinValue;
+			basic_label_action->ResetText();
+			basic_label_result_input->ResetText();
+			calculated = false;
+		}
+	
+	private: Void basic_button_zero_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "0";
+		}
+	
+	private: Void basic_button_one_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "1";
+		}
+	
+	private: Void basic_button_two_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "2";
+		}
+	
+	private: Void basic_button_three_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "3";
+		}
+	
+	private: Void basic_button_four_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "4";
+		}
+	
+	private: Void basic_button_five_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "5";
+		}
+	
+	private: Void basic_button_six_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "6";
+		}
+	
+	private: Void basic_button_seven_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "7";
+		}
+	
+	private: Void basic_button_eight_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "8";
+		}
+	
+	private: Void basic_button_nine_Click(Object^ sender, EventArgs^ e) {
+			if (calculated) {
+				basic_button_clear_everything->PerformClick();
+			}
+			basic_label_result_input->Text += "9";
+		}
 
 
-	private: System::Void basic_button_equals_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (firstValue != System::Double::MinValue && action != ' ') {
-			switch (action) {
-			case '+':
-				if (calculated) {
-					firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
-					basic_label_action->Text = System::Convert::ToString(firstValue) + " + " + System::Convert::ToString(secondValue);
+
+	private: Void perform_conversion(Object^ sender, EventArgs^ e) {
+		if (label_conversion_input->Text->Length > 0) {
+			Console::Write(label_conversion_input->Text);
+		}
+	}
+	
+	private: Void convert_button_zero_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "0";
+		}
+	
+	private: Void convert_button_one_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "1";
+		}
+	
+	private: Void convert_button_two_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "2";
+		}
+	
+	private: Void convert_button_three_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "3";
+		}
+	
+	private: Void convert_button_four_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "4";
+		}
+	
+	private: Void convert_button_five_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "5";
+		}
+	
+	private: Void convert_button_six_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "6";
+		}
+	
+	private: Void convert_button_seven_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "7";
+		}
+	
+	private: Void convert_button_eight_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "8";
+		}
+	
+	private: Void convert_button_nine_Click(Object^ sender, EventArgs^ e) {
+			label_conversion_input->Text += "9";
+		}
+	
+	private: Void convert_button_period_Click(Object^ sender, EventArgs^ e) {
+			if (!label_conversion_input->Text->ToString()->Contains(",")) {
+				if (label_conversion_input->Text->Length == 0) {
+					label_conversion_input->Text += "0,";
+				} else {
+				label_conversion_input->Text += ",";
 				}
-				else {
-					basic_label_action->Text += basic_label_result_input->Text;
-					secondValue = System::Convert::ToDouble(basic_label_result_input->Text);
-				}
-				basic_label_result_input->Text = System::Convert::ToString(firstValue + secondValue);
+			}
+		}
+	
+	private: Void convert_button_erase_Click(Object^ sender, EventArgs^ e) {
+			if (label_conversion_input->Text->Length > 0) {
+				label_conversion_input->Text = label_conversion_input->Text->Substring(0, label_conversion_input->Text->Length - 1);
+			}
+		}
+	
+	private: Void convert_button_erase_everything_Click(Object^ sender, EventArgs^ e) {
+		label_conversion_input->ResetText();
+		label_conversion_result->ResetText();
+	}
+		   
+	private: System::Void KeyListener(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		Console::WriteLine(sender);
+		if (panel_basic->Visible) {
+			switch (e->KeyCode) {
+				//Numpad number Keys
+			case Keys::NumPad0:basic_button_zero->PerformClick();		break;
+			case Keys::NumPad1:basic_button_one->PerformClick();		break;
+			case Keys::NumPad2:basic_button_two->PerformClick();		break;
+			case Keys::NumPad3:basic_button_three->PerformClick();		break;
+			case Keys::NumPad4:basic_button_four->PerformClick();		break;
+			case Keys::NumPad5:basic_button_five->PerformClick();		break;
+			case Keys::NumPad6:basic_button_six->PerformClick();		break;
+			case Keys::NumPad7:basic_button_seven->PerformClick();		break;
+			case Keys::NumPad8:basic_button_eight->PerformClick();		break;
+			case Keys::NumPad9:basic_button_nine->PerformClick();		break;
+				//Number Keys
+			case Keys::D0:basic_button_zero->PerformClick();			break;
+			case Keys::D1:basic_button_one->PerformClick();				break;
+			case Keys::D2:basic_button_two->PerformClick();				break;
+			case Keys::D3:basic_button_three->PerformClick();			break;
+			case Keys::D4:basic_button_four->PerformClick();			break;
+			case Keys::D5:basic_button_five->PerformClick();			break;
+			case Keys::D6:basic_button_six->PerformClick();				break;
+			case Keys::D7:basic_button_seven->PerformClick();			break;
+			case Keys::D8:basic_button_eight->PerformClick();			break;
+			case Keys::D9:basic_button_nine->PerformClick();			break;
+				//Action Buttons
+			case Keys::Enter:basic_button_equals->PerformClick();				break;
+			case Keys::Delete:basic_button_clear_everything->PerformClick();	break;
+			case Keys::Multiply:basic_button_miltiplication->PerformClick();	break;
+			case Keys::Add:basic_button_addition->PerformClick();				break;
+			case Keys::Subtract: basic_button_subtraction->PerformClick();		break;
+			case Keys::Decimal:basic_button_period->PerformClick();				break;
+			case Keys::Divide:basic_button_division->PerformClick();			break;
+			case Keys::Oemplus:basic_button_addition->PerformClick();			break;
+			case Keys::OemMinus:basic_button_subtraction->PerformClick();		break;
+			case Keys::OemPeriod:basic_button_period->PerformClick();			break;
+			case Keys::Back:basic_button_delete->PerformClick();				break;
+			default:
 				break;
-			case '-':
-				if (calculated) {
-					firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
-					basic_label_action->Text = System::Convert::ToString(firstValue) + " - " + System::Convert::ToString(secondValue);
-				}
-				else {
-					basic_label_action->Text += basic_label_result_input->Text;
-					secondValue = System::Convert::ToDouble(basic_label_result_input->Text);
-				}
-				basic_label_result_input->Text = System::Convert::ToString(firstValue - secondValue);
-				break;
-			case '/':
-				if (calculated) {
-					firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
-					basic_label_action->Text = System::Convert::ToString(firstValue) + " / " + System::Convert::ToString(secondValue);
-				}
-				else {
-					basic_label_action->Text += basic_label_result_input->Text;
-					secondValue = System::Convert::ToDouble(basic_label_result_input->Text);
-				}
-				basic_label_result_input->Text = System::Convert::ToString(firstValue / secondValue);
-				break;
-			case '*':
-				if (calculated) {
-					firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
-					basic_label_action->Text = System::Convert::ToString(firstValue) + " * " + System::Convert::ToString(secondValue);
-				}
-				else {
-					basic_label_action->Text += basic_label_result_input->Text;
-					secondValue = System::Convert::ToDouble(basic_label_result_input->Text);
-				}
-				basic_label_result_input->Text = System::Convert::ToString(firstValue * secondValue);
-				break;
+			}
+		}else {
+			switch (e->KeyCode) {
+				//Numpad number Keys
+			case Keys::NumPad0:convert_button_zero->PerformClick();		break;
+			case Keys::NumPad1:convert_button_one->PerformClick();		break;
+			case Keys::NumPad2:convert_button_two->PerformClick();		break;
+			case Keys::NumPad3:convert_button_three->PerformClick();		break;
+			case Keys::NumPad4:convert_button_four->PerformClick();		break;
+			case Keys::NumPad5:convert_button_five->PerformClick();		break;
+			case Keys::NumPad6:convert_button_six->PerformClick();		break;
+			case Keys::NumPad7:convert_button_seven->PerformClick();		break;
+			case Keys::NumPad8:convert_button_eight->PerformClick();		break;
+			case Keys::NumPad9:convert_button_nine->PerformClick();		break;
+				//Number Keys
+			case Keys::D0:convert_button_zero->PerformClick();			break;
+			case Keys::D1:convert_button_one->PerformClick();				break;
+			case Keys::D2:convert_button_two->PerformClick();				break;
+			case Keys::D3:convert_button_three->PerformClick();			break;
+			case Keys::D4:convert_button_four->PerformClick();			break;
+			case Keys::D5:convert_button_five->PerformClick();			break;
+			case Keys::D6:convert_button_six->PerformClick();				break;
+			case Keys::D7:convert_button_seven->PerformClick();			break;
+			case Keys::D8:convert_button_eight->PerformClick();			break;
+			case Keys::D9:convert_button_nine->PerformClick();			break;
+				//Action Buttons
+			case Keys::Delete:convert_button_erase_everything->PerformClick();	break;
+			case Keys::Decimal:convert_button_period->PerformClick();				break;
+			case Keys::OemPeriod:convert_button_period->PerformClick();			break;
+			case Keys::Back:convert_button_erase->PerformClick();				break;
 			default:
 				break;
 			}
 		}
-		calculated = true;
+		e->Handled = true;
+		e->SuppressKeyPress = true;
 	}
-	private: System::Void basic_button_period_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (!basic_label_result_input->Text->Contains(",")) {
-			basic_label_result_input->Text += ",";
-		}
-	}
-	private: System::Void basic_button_addition_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Length > 0) {
-			firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
-			action = '+';
-			basic_label_action->Text = basic_label_result_input->Text + " + ";
-		}
-		basic_label_result_input->ResetText();
-	}
-	private: System::Void basic_button_subtraction_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Length > 0) {
-			firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
-			action = '-';
-			basic_label_action->Text = basic_label_result_input->Text + " - ";
-		}
-		basic_label_result_input->ResetText();
-	}
-	private: System::Void basic_button_plus_minus_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Contains("-")) {
-			basic_label_result_input->Text = basic_label_result_input->Text->Substring(1);
-		}
-		else {
-			basic_label_result_input->Text = basic_label_result_input->Text->Insert(0, "-");
-		}
-	}
-	private: System::Void basic_button_miltiplication_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Length > 0) {
-			firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
-			action = '*';
-			basic_label_action->Text = basic_label_result_input->Text + " * ";
-		}
-		basic_label_result_input->ResetText();
-	}
-	private: System::Void basic_button_division_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Length > 0) {
-			firstValue = System::Convert::ToDouble(basic_label_result_input->Text);
-			action = '/';
-			basic_label_action->Text = basic_label_result_input->Text + " / ";
-		}
-		basic_label_result_input->ResetText();
-	}
-	private: System::Void basic_button_one_divided_by_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Length > 0) {
-			double val;
-			val = System::Double::Parse(basic_label_result_input->Text);
-			basic_label_action->Text = L"⅟" + System::Convert::ToString(val);
-			basic_label_result_input->Text = System::Convert::ToString(1 / val);
-		}
-	}
-	private: System::Void basic_button_power_two_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Length > 0) {
-			double val;
-			val = System::Double::Parse(basic_label_result_input->Text);
-			basic_label_action->Text = System::Convert::ToString(val) + L"²";
-			basic_label_result_input->Text = System::Convert::ToString(System::Math::Pow(val, 2));
-		}
-	}
-	private: System::Void basic_button_square_root_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Length > 0) {
-			double val;
-			val = System::Double::Parse(basic_label_result_input->Text);
-			basic_label_action->Text = L"√" + System::Convert::ToString(val);
-			basic_label_result_input->Text = System::Convert::ToString(System::Math::Sqrt(val));
-		}
-	}
-	private: System::Void basic_button_percent_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Length > 0) {
-			double val;
-			val = System::Double::Parse(basic_label_result_input->Text);
-			basic_label_action->Text = L"%" + System::Convert::ToString(val);
-			if ((int)val % 2) {
-				basic_label_result_input->Text = "Odd";
-			}else {
-				basic_label_result_input->Text = "Even";
-			}
-		}
-		calculated = true;
-	}
-	private: System::Void basic_button_delete_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (basic_label_result_input->Text->Length > 0) {
-			basic_label_result_input->Text = basic_label_result_input->Text->Substring(0, basic_label_result_input->Text->Length - 1);
-		}
-	}
-	private: System::Void basic_button_clear_Click(System::Object^ sender, System::EventArgs^ e) {
-		basic_label_result_input->ResetText();
-	}
-	private: System::Void basic_button_clear_everything_Click(System::Object^ sender, System::EventArgs^ e) {
-		action = ' ';
-		firstValue = System::Double::MinValue;
-		secondValue = System::Double::MinValue;
-		basic_label_action->ResetText();
-		basic_label_result_input->ResetText();
-		calculated = false;
-	}
-	private: System::Void basic_button_zero_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "0";
-	}
-	private: System::Void basic_button_one_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "1";
-	}
-	private: System::Void basic_button_two_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "2";
-	}
-	private: System::Void basic_button_three_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "3";
-	}
-	private: System::Void basic_button_four_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "4";
-	}
-	private: System::Void basic_button_five_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "5";
-	}
-	private: System::Void basic_button_six_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "6";
-	}
-	private: System::Void basic_button_seven_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "7";
-	}
-	private: System::Void basic_button_eight_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "8";
-	}
-	private: System::Void basic_button_nine_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (calculated) {
-			basic_button_clear_everything->PerformClick();
-		}
-		basic_label_result_input->Text += "9";
-	}
+
 };
 }

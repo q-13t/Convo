@@ -406,11 +406,15 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   // 
 			   // combo_from
 			   // 
+			   this->combo_from->BackColor = System::Drawing::SystemColors::WindowText;
 			   this->combo_from->Dock = System::Windows::Forms::DockStyle::Bottom;
 			   this->combo_from->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			   this->combo_from->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			   this->combo_from->ForeColor = System::Drawing::Color::White;
 			   this->combo_from->FormattingEnabled = true;
 			   this->combo_from->Location = System::Drawing::Point(65, 26);
 			   this->combo_from->Name = L"combo_from";
+			   this->combo_from->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			   this->combo_from->Size = System::Drawing::Size(241, 21);
 			   this->combo_from->TabIndex = 3;
 			   this->combo_from->TabStop = false;
@@ -447,6 +451,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->combo_to->BackColor = System::Drawing::SystemColors::WindowText;
 			   this->combo_to->Dock = System::Windows::Forms::DockStyle::Bottom;
 			   this->combo_to->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			   this->combo_to->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			   this->combo_to->ForeColor = System::Drawing::Color::White;
 			   this->combo_to->FormattingEnabled = true;
 			   this->combo_to->Location = System::Drawing::Point(65, 28);
@@ -1283,8 +1288,8 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			   this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			   this->ClientSize = System::Drawing::Size(384, 561);
-			   this->Controls->Add(this->panel_basic);
 			   this->Controls->Add(this->panel_conversion);
+			   this->Controls->Add(this->panel_basic);
 			   this->Controls->Add(this->menu_left);
 			   this->Controls->Add(this->menu_top);
 			   this->KeyPreview = true;
@@ -1322,12 +1327,12 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 
 	private: Void ValidateConnection() {
 		try {
-			
-			button_Lenght->Enabled = false;
-			button_Weight->Enabled = false;
-			button_Temperature->Enabled = false;
-			button_Area->Enabled = false;
-			button_Speed->Enabled = false;
+			API::MakeHttpRequest("http://localhost:8080/", nullptr);
+			button_Lenght->Enabled = true;
+			button_Weight->Enabled = true;
+			button_Temperature->Enabled = true;
+			button_Area->Enabled = true;
+			button_Speed->Enabled = true;
 		}catch (Exception^ e) {
 			button_Lenght->Enabled = false;
 			button_Weight->Enabled = false;

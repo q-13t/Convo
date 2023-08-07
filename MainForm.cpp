@@ -1,5 +1,5 @@
 #include "MainForm.h"
-#include "MyForm.h"
+#include "MainForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -7,6 +7,6 @@ using namespace System::Windows::Forms;
 void main() {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	Convo::MyForm mainForm;
+	Convo::MainForm mainForm;
 	Application::Run(% mainForm);
 }

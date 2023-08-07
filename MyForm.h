@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "MainForm.h"
+#include "API.h"
 
 namespace Convo {
 
@@ -380,6 +381,7 @@ namespace Convo {
 			   this->combo_from->Name = L"combo_from";
 			   this->combo_from->Size = System::Drawing::Size(241, 21);
 			   this->combo_from->TabIndex = 3;
+			   this->combo_from->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::callAPI);
 			   // 
 			   // label_conversion_from
 			   // 
@@ -400,6 +402,7 @@ namespace Convo {
 			   this->label_conversion_input->Size = System::Drawing::Size(306, 29);
 			   this->label_conversion_input->TabIndex = 1;
 			   this->label_conversion_input->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			   this->label_conversion_input->TextChanged += gcnew System::EventHandler(this, &MyForm::callAPI);
 			   // 
 			   // combo_to
 			   // 
@@ -410,6 +413,7 @@ namespace Convo {
 			   this->combo_to->Name = L"combo_to";
 			   this->combo_to->Size = System::Drawing::Size(241, 21);
 			   this->combo_to->TabIndex = 2;
+			   this->combo_to->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::callAPI);
 			   // 
 			   // label_conversion_to
 			   // 
@@ -1117,6 +1121,7 @@ namespace Convo {
 			combo_to->SelectedIndex = 0;
 			combo_from->SelectedIndex = 0;
 			label_conversion_input->ResetText();
+			label_conversion_result->ResetText();
 		}
 		
 		label_top_operaion->Text = selected;
@@ -1427,7 +1432,7 @@ namespace Convo {
 		label_conversion_result->ResetText();
 	}
 		   
-	private: System::Void KeyListener(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+	private: Void KeyListener(Object^ sender, KeyEventArgs^ e) {
 		Console::WriteLine(sender);
 		if (panel_basic->Visible) {
 			switch (e->KeyCode) {
@@ -1504,6 +1509,44 @@ namespace Convo {
 		e->Handled = true;
 		e->SuppressKeyPress = true;
 	}
-
+	
+	private: String^ getValueFromHash(Hashtable ^table, String ^key) {
+		for each (DictionaryEntry ^ val in table){
+			if (val->Key->Equals(key)) {
+				return val->Value->ToString();
+			}
+		}
+		return nullptr;
+	}
+	//http://localhost:8080/length?from=meter&to=meter&value=
+	private: System::Void callAPI(System::Object^ sender, System::EventArgs^ e) {
+		String^ value = label_conversion_input->Text->ToString()->Replace(",", ".");
+		if (!value->EndsWith(".")&&value->Length>0) {
+			String^ URL = "http://localhost:8080/";
+			String^ operaion = label_top_operaion->Text;
+			URL += operaion->ToLower();
+			if (operaion->Equals("Length")) {
+				URL += "?from=" + getValueFromHash(% lenghts, combo_from->SelectedItem->ToString());
+				URL += "&to=" + getValueFromHash(% lenghts, combo_to->SelectedItem->ToString());
+			} else if (operaion->Equals("Weight")) {
+				URL += "?from=" + getValueFromHash(% weights, combo_from->SelectedItem->ToString());
+				URL += "&to=" + getValueFromHash(% weights, combo_to->SelectedItem->ToString());
+			} else if (operaion->Equals("Temperature")) {
+				URL += "?from=" + getValueFromHash(% temperatures, combo_from->SelectedItem->ToString());
+				URL += "&to=" + getValueFromHash(% temperatures, combo_to->SelectedItem->ToString());
+			} else if (operaion->Equals("Area")) {
+				URL += "?from=" + getValueFromHash(% areas, combo_from->SelectedItem->ToString());
+				URL += "&to=" + getValueFromHash(% areas, combo_to->SelectedItem->ToString());
+			} else if (operaion->Equals("Speed")) {
+				URL += "?from=" + getValueFromHash(% speeds, combo_from->SelectedItem->ToString());
+				URL += "&to=" + getValueFromHash(% speeds, combo_to->SelectedItem->ToString());
+			}
+			URL += "&value=" +value;
+			for each (KeyValuePair<String^,Object^>^ var in API::MakeHttpRequest(URL, nullptr))
+				if (var->Key->Equals("result")) 
+					label_conversion_result->Text = var->Value->ToString()
+		}
+		
+	}
 };
 }

@@ -717,7 +717,6 @@ namespace Convo {
 			this->ClientSize = System::Drawing::Size(304, 461);
 			this->Controls->Add(this->splitContainer1);
 			this->Controls->Add(this->tableLayoutPanel1);
-			this->KeyPreview = true;
 			this->MinimumSize = System::Drawing::Size(320, 500);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";

@@ -55,13 +55,23 @@ namespace Convo {
 			speeds.Add("Knots", "k");
 			speeds.Add("Mach (SI standard)", "m");
 
-			temperatures.Add("Celsius","felsius");
+			temperatures.Add("Celsius","celsius");
 			temperatures.Add("Fahrenheit","fahrenheit");
 			temperatures.Add("Kelvin","kelvin");
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
+			try {
+				API::MakeHttpRequest("http://localhost:8080/test", nullptr);
+			}
+			catch (Exception^ e) {
+				button_Lenght->Enabled = false;
+				button_Weight->Enabled = false;
+				button_Temperature->Enabled = false;
+				button_Area->Enabled = false;
+				button_Speed->Enabled = false;
+			}
 		}
 
 	protected:
@@ -381,7 +391,10 @@ namespace Convo {
 			   this->combo_from->Name = L"combo_from";
 			   this->combo_from->Size = System::Drawing::Size(241, 21);
 			   this->combo_from->TabIndex = 3;
+			   this->combo_from->TabStop = false;
 			   this->combo_from->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::callAPI);
+			   this->combo_from->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->combo_from->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // label_conversion_from
 			   // 
@@ -413,7 +426,10 @@ namespace Convo {
 			   this->combo_to->Name = L"combo_to";
 			   this->combo_to->Size = System::Drawing::Size(241, 21);
 			   this->combo_to->TabIndex = 2;
+			   this->combo_to->TabStop = false;
 			   this->combo_to->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::callAPI);
+			   this->combo_to->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->combo_to->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // label_conversion_to
 			   // 
@@ -475,158 +491,210 @@ namespace Convo {
 			   // convert_button_period
 			   // 
 			   this->convert_button_period->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_period->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_period->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_period->Location = System::Drawing::Point(204, 343);
 			   this->convert_button_period->Name = L"convert_button_period";
 			   this->convert_button_period->Size = System::Drawing::Size(96, 81);
 			   this->convert_button_period->TabIndex = 13;
+			   this->convert_button_period->TabStop = false;
 			   this->convert_button_period->Text = L",";
 			   this->convert_button_period->UseVisualStyleBackColor = true;
 			   this->convert_button_period->Click += gcnew System::EventHandler(this, &MyForm::convert_button_period_Click);
+			   this->convert_button_period->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_period->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_zero
 			   // 
 			   this->convert_button_zero->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_zero->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_zero->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_zero->Location = System::Drawing::Point(103, 343);
 			   this->convert_button_zero->Name = L"convert_button_zero";
 			   this->convert_button_zero->Size = System::Drawing::Size(95, 81);
 			   this->convert_button_zero->TabIndex = 12;
+			   this->convert_button_zero->TabStop = false;
 			   this->convert_button_zero->Text = L"0";
 			   this->convert_button_zero->UseVisualStyleBackColor = true;
 			   this->convert_button_zero->Click += gcnew System::EventHandler(this, &MyForm::convert_button_zero_Click);
+			   this->convert_button_zero->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_zero->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_one
 			   // 
 			   this->convert_button_one->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_one->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_one->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_one->Location = System::Drawing::Point(3, 258);
 			   this->convert_button_one->Name = L"convert_button_one";
 			   this->convert_button_one->Size = System::Drawing::Size(94, 79);
 			   this->convert_button_one->TabIndex = 11;
+			   this->convert_button_one->TabStop = false;
 			   this->convert_button_one->Text = L"1";
 			   this->convert_button_one->UseVisualStyleBackColor = true;
 			   this->convert_button_one->Click += gcnew System::EventHandler(this, &MyForm::convert_button_one_Click);
+			   this->convert_button_one->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_one->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_two
 			   // 
 			   this->convert_button_two->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_two->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_two->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_two->Location = System::Drawing::Point(103, 258);
 			   this->convert_button_two->Name = L"convert_button_two";
 			   this->convert_button_two->Size = System::Drawing::Size(95, 79);
 			   this->convert_button_two->TabIndex = 10;
+			   this->convert_button_two->TabStop = false;
 			   this->convert_button_two->Text = L"2";
 			   this->convert_button_two->UseVisualStyleBackColor = true;
 			   this->convert_button_two->Click += gcnew System::EventHandler(this, &MyForm::convert_button_two_Click);
+			   this->convert_button_two->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_two->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_three
 			   // 
 			   this->convert_button_three->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_three->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_three->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_three->Location = System::Drawing::Point(204, 258);
 			   this->convert_button_three->Name = L"convert_button_three";
 			   this->convert_button_three->Size = System::Drawing::Size(96, 79);
 			   this->convert_button_three->TabIndex = 9;
+			   this->convert_button_three->TabStop = false;
 			   this->convert_button_three->Text = L"3";
 			   this->convert_button_three->UseVisualStyleBackColor = true;
 			   this->convert_button_three->Click += gcnew System::EventHandler(this, &MyForm::convert_button_three_Click);
+			   this->convert_button_three->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_three->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_six
 			   // 
 			   this->convert_button_six->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_six->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_six->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_six->Location = System::Drawing::Point(204, 173);
 			   this->convert_button_six->Name = L"convert_button_six";
 			   this->convert_button_six->Size = System::Drawing::Size(96, 79);
 			   this->convert_button_six->TabIndex = 8;
+			   this->convert_button_six->TabStop = false;
 			   this->convert_button_six->Text = L"6";
 			   this->convert_button_six->UseVisualStyleBackColor = true;
 			   this->convert_button_six->Click += gcnew System::EventHandler(this, &MyForm::convert_button_six_Click);
+			   this->convert_button_six->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_six->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_five
 			   // 
 			   this->convert_button_five->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_five->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_five->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_five->Location = System::Drawing::Point(103, 173);
 			   this->convert_button_five->Name = L"convert_button_five";
 			   this->convert_button_five->Size = System::Drawing::Size(95, 79);
-			   this->convert_button_five->TabIndex = 7;
+			   this->convert_button_five->TabIndex = 2;
+			   this->convert_button_five->TabStop = false;
 			   this->convert_button_five->Text = L"5";
 			   this->convert_button_five->UseVisualStyleBackColor = true;
 			   this->convert_button_five->Click += gcnew System::EventHandler(this, &MyForm::convert_button_five_Click);
+			   this->convert_button_five->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_five->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_four
 			   // 
 			   this->convert_button_four->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_four->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_four->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_four->Location = System::Drawing::Point(3, 173);
 			   this->convert_button_four->Name = L"convert_button_four";
 			   this->convert_button_four->Size = System::Drawing::Size(94, 79);
 			   this->convert_button_four->TabIndex = 6;
+			   this->convert_button_four->TabStop = false;
 			   this->convert_button_four->Text = L"4";
 			   this->convert_button_four->UseVisualStyleBackColor = true;
 			   this->convert_button_four->Click += gcnew System::EventHandler(this, &MyForm::convert_button_four_Click);
+			   this->convert_button_four->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_four->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_seven
 			   // 
 			   this->convert_button_seven->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_seven->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_seven->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_seven->Location = System::Drawing::Point(3, 88);
 			   this->convert_button_seven->Name = L"convert_button_seven";
 			   this->convert_button_seven->Size = System::Drawing::Size(94, 79);
 			   this->convert_button_seven->TabIndex = 5;
+			   this->convert_button_seven->TabStop = false;
 			   this->convert_button_seven->Text = L"7";
 			   this->convert_button_seven->UseVisualStyleBackColor = true;
 			   this->convert_button_seven->Click += gcnew System::EventHandler(this, &MyForm::convert_button_seven_Click);
+			   this->convert_button_seven->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_seven->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_eight
 			   // 
 			   this->convert_button_eight->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_eight->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_eight->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_eight->Location = System::Drawing::Point(103, 88);
 			   this->convert_button_eight->Name = L"convert_button_eight";
 			   this->convert_button_eight->Size = System::Drawing::Size(95, 79);
 			   this->convert_button_eight->TabIndex = 4;
+			   this->convert_button_eight->TabStop = false;
 			   this->convert_button_eight->Text = L"8";
 			   this->convert_button_eight->UseVisualStyleBackColor = true;
 			   this->convert_button_eight->Click += gcnew System::EventHandler(this, &MyForm::convert_button_eight_Click);
+			   this->convert_button_eight->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_eight->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_nine
 			   // 
 			   this->convert_button_nine->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_nine->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_nine->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_nine->Location = System::Drawing::Point(204, 88);
 			   this->convert_button_nine->Name = L"convert_button_nine";
 			   this->convert_button_nine->Size = System::Drawing::Size(96, 79);
 			   this->convert_button_nine->TabIndex = 3;
+			   this->convert_button_nine->TabStop = false;
 			   this->convert_button_nine->Text = L"9";
 			   this->convert_button_nine->UseVisualStyleBackColor = true;
 			   this->convert_button_nine->Click += gcnew System::EventHandler(this, &MyForm::convert_button_nine_Click);
+			   this->convert_button_nine->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_nine->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_erase
 			   // 
 			   this->convert_button_erase->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_erase->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_erase->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_erase->Location = System::Drawing::Point(204, 3);
 			   this->convert_button_erase->Name = L"convert_button_erase";
 			   this->convert_button_erase->Size = System::Drawing::Size(96, 79);
 			   this->convert_button_erase->TabIndex = 2;
+			   this->convert_button_erase->TabStop = false;
 			   this->convert_button_erase->Text = L"<=";
 			   this->convert_button_erase->UseVisualStyleBackColor = true;
 			   this->convert_button_erase->Click += gcnew System::EventHandler(this, &MyForm::convert_button_erase_Click);
+			   this->convert_button_erase->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_erase->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // convert_button_erase_everything
 			   // 
 			   this->convert_button_erase_everything->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->convert_button_erase_everything->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_erase_everything->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_erase_everything->Location = System::Drawing::Point(103, 3);
 			   this->convert_button_erase_everything->Name = L"convert_button_erase_everything";
 			   this->convert_button_erase_everything->Size = System::Drawing::Size(95, 79);
 			   this->convert_button_erase_everything->TabIndex = 1;
+			   this->convert_button_erase_everything->TabStop = false;
 			   this->convert_button_erase_everything->Text = L"CE";
 			   this->convert_button_erase_everything->UseVisualStyleBackColor = true;
 			   this->convert_button_erase_everything->Click += gcnew System::EventHandler(this, &MyForm::convert_button_erase_everything_Click);
+			   this->convert_button_erase_everything->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->convert_button_erase_everything->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // panel_basic
 			   // 
@@ -655,7 +723,8 @@ namespace Convo {
 			   this->splitContainer2->Panel2->Controls->Add(this->basic_label_result_input);
 			   this->splitContainer2->Size = System::Drawing::Size(306, 100);
 			   this->splitContainer2->SplitterDistance = 47;
-			   this->splitContainer2->TabIndex = 4;
+			   this->splitContainer2->TabIndex = 0;
+			   this->splitContainer2->TabStop = false;
 			   // 
 			   // basic_label_action
 			   // 
@@ -674,7 +743,7 @@ namespace Convo {
 			   this->basic_label_result_input->Location = System::Drawing::Point(0, 0);
 			   this->basic_label_result_input->Name = L"basic_label_result_input";
 			   this->basic_label_result_input->Size = System::Drawing::Size(306, 49);
-			   this->basic_label_result_input->TabIndex = 1;
+			   this->basic_label_result_input->TabIndex = 0;
 			   this->basic_label_result_input->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			   // 
 			   // tableLayoutPanel2
@@ -731,291 +800,411 @@ namespace Convo {
 			   // 
 			   // basic_button_zero
 			   // 
+			   this->basic_button_zero->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_zero->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_zero->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_zero->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_zero->Location = System::Drawing::Point(78, 363);
 			   this->basic_button_zero->Name = L"basic_button_zero";
 			   this->basic_button_zero->Size = System::Drawing::Size(69, 67);
-			   this->basic_button_zero->TabIndex = 46;
+			   this->basic_button_zero->TabIndex = 0;
+			   this->basic_button_zero->TabStop = false;
 			   this->basic_button_zero->Text = L"0";
 			   this->basic_button_zero->UseVisualStyleBackColor = true;
 			   this->basic_button_zero->Click += gcnew System::EventHandler(this, &MyForm::basic_button_zero_Click);
+			   this->basic_button_zero->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_zero->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_plus_minus
 			   // 
+			   this->basic_button_plus_minus->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_plus_minus->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_plus_minus->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_plus_minus->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_plus_minus->Location = System::Drawing::Point(3, 363);
 			   this->basic_button_plus_minus->Name = L"basic_button_plus_minus";
 			   this->basic_button_plus_minus->Size = System::Drawing::Size(69, 67);
-			   this->basic_button_plus_minus->TabIndex = 45;
+			   this->basic_button_plus_minus->TabIndex = 0;
+			   this->basic_button_plus_minus->TabStop = false;
 			   this->basic_button_plus_minus->Text = L"±";
 			   this->basic_button_plus_minus->UseVisualStyleBackColor = true;
 			   this->basic_button_plus_minus->Click += gcnew System::EventHandler(this, &MyForm::basic_button_plus_minus_Click);
+			   this->basic_button_plus_minus->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_plus_minus->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_equals
 			   // 
+			   this->basic_button_equals->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_equals->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_equals->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_equals->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_equals->Location = System::Drawing::Point(228, 363);
 			   this->basic_button_equals->Name = L"basic_button_equals";
 			   this->basic_button_equals->Size = System::Drawing::Size(72, 67);
-			   this->basic_button_equals->TabIndex = 44;
+			   this->basic_button_equals->TabIndex = 0;
+			   this->basic_button_equals->TabStop = false;
 			   this->basic_button_equals->Text = L"=";
 			   this->basic_button_equals->UseVisualStyleBackColor = true;
 			   this->basic_button_equals->Click += gcnew System::EventHandler(this, &MyForm::basic_button_equals_Click);
+			   this->basic_button_equals->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_equals->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_period
 			   // 
+			   this->basic_button_period->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_period->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_period->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_period->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_period->Location = System::Drawing::Point(153, 363);
 			   this->basic_button_period->Name = L"basic_button_period";
 			   this->basic_button_period->Size = System::Drawing::Size(69, 67);
-			   this->basic_button_period->TabIndex = 43;
+			   this->basic_button_period->TabIndex = 0;
+			   this->basic_button_period->TabStop = false;
 			   this->basic_button_period->Text = L",";
 			   this->basic_button_period->UseVisualStyleBackColor = true;
 			   this->basic_button_period->Click += gcnew System::EventHandler(this, &MyForm::basic_button_period_Click);
+			   this->basic_button_period->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_period->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_two
 			   // 
+			   this->basic_button_two->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_two->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_two->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_two->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_two->Location = System::Drawing::Point(78, 291);
 			   this->basic_button_two->Name = L"basic_button_two";
 			   this->basic_button_two->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_two->TabIndex = 42;
+			   this->basic_button_two->TabIndex = 0;
+			   this->basic_button_two->TabStop = false;
 			   this->basic_button_two->Text = L"2";
 			   this->basic_button_two->UseVisualStyleBackColor = true;
 			   this->basic_button_two->Click += gcnew System::EventHandler(this, &MyForm::basic_button_two_Click);
+			   this->basic_button_two->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_two->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_one
 			   // 
+			   this->basic_button_one->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_one->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_one->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_one->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_one->Location = System::Drawing::Point(3, 291);
 			   this->basic_button_one->Name = L"basic_button_one";
 			   this->basic_button_one->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_one->TabIndex = 41;
+			   this->basic_button_one->TabIndex = 0;
+			   this->basic_button_one->TabStop = false;
 			   this->basic_button_one->Text = L"1";
 			   this->basic_button_one->UseVisualStyleBackColor = true;
 			   this->basic_button_one->Click += gcnew System::EventHandler(this, &MyForm::basic_button_one_Click);
+			   this->basic_button_one->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_one->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_addition
 			   // 
+			   this->basic_button_addition->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_addition->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_addition->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_addition->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_addition->Location = System::Drawing::Point(228, 291);
 			   this->basic_button_addition->Name = L"basic_button_addition";
 			   this->basic_button_addition->Size = System::Drawing::Size(72, 66);
-			   this->basic_button_addition->TabIndex = 40;
+			   this->basic_button_addition->TabIndex = 0;
+			   this->basic_button_addition->TabStop = false;
 			   this->basic_button_addition->Text = L"+";
 			   this->basic_button_addition->UseVisualStyleBackColor = true;
 			   this->basic_button_addition->Click += gcnew System::EventHandler(this, &MyForm::basic_button_addition_Click);
+			   this->basic_button_addition->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_addition->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_three
 			   // 
+			   this->basic_button_three->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_three->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_three->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_three->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_three->Location = System::Drawing::Point(153, 291);
 			   this->basic_button_three->Name = L"basic_button_three";
 			   this->basic_button_three->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_three->TabIndex = 39;
+			   this->basic_button_three->TabIndex = 0;
+			   this->basic_button_three->TabStop = false;
 			   this->basic_button_three->Text = L"3";
 			   this->basic_button_three->UseVisualStyleBackColor = true;
 			   this->basic_button_three->Click += gcnew System::EventHandler(this, &MyForm::basic_button_three_Click);
+			   this->basic_button_three->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_three->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_five
 			   // 
+			   this->basic_button_five->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_five->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_five->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_five->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_five->Location = System::Drawing::Point(78, 219);
 			   this->basic_button_five->Name = L"basic_button_five";
 			   this->basic_button_five->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_five->TabIndex = 38;
+			   this->basic_button_five->TabIndex = 0;
+			   this->basic_button_five->TabStop = false;
 			   this->basic_button_five->Text = L"5";
 			   this->basic_button_five->UseVisualStyleBackColor = true;
 			   this->basic_button_five->Click += gcnew System::EventHandler(this, &MyForm::basic_button_five_Click);
+			   this->basic_button_five->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_five->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_four
 			   // 
+			   this->basic_button_four->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_four->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_four->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_four->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_four->Location = System::Drawing::Point(3, 219);
 			   this->basic_button_four->Name = L"basic_button_four";
 			   this->basic_button_four->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_four->TabIndex = 37;
+			   this->basic_button_four->TabIndex = 0;
+			   this->basic_button_four->TabStop = false;
 			   this->basic_button_four->Text = L"4";
 			   this->basic_button_four->UseVisualStyleBackColor = true;
 			   this->basic_button_four->Click += gcnew System::EventHandler(this, &MyForm::basic_button_four_Click);
+			   this->basic_button_four->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_four->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_subtraction
 			   // 
+			   this->basic_button_subtraction->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_subtraction->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_subtraction->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_subtraction->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_subtraction->Location = System::Drawing::Point(228, 219);
 			   this->basic_button_subtraction->Name = L"basic_button_subtraction";
 			   this->basic_button_subtraction->Size = System::Drawing::Size(72, 66);
-			   this->basic_button_subtraction->TabIndex = 36;
+			   this->basic_button_subtraction->TabIndex = 0;
+			   this->basic_button_subtraction->TabStop = false;
 			   this->basic_button_subtraction->Text = L"-";
 			   this->basic_button_subtraction->UseVisualStyleBackColor = true;
 			   this->basic_button_subtraction->Click += gcnew System::EventHandler(this, &MyForm::basic_button_subtraction_Click);
+			   this->basic_button_subtraction->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_subtraction->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_six
 			   // 
+			   this->basic_button_six->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_six->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_six->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_six->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_six->Location = System::Drawing::Point(153, 219);
 			   this->basic_button_six->Name = L"basic_button_six";
 			   this->basic_button_six->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_six->TabIndex = 35;
+			   this->basic_button_six->TabIndex = 0;
+			   this->basic_button_six->TabStop = false;
 			   this->basic_button_six->Text = L"6";
 			   this->basic_button_six->UseVisualStyleBackColor = true;
 			   this->basic_button_six->Click += gcnew System::EventHandler(this, &MyForm::basic_button_six_Click);
+			   this->basic_button_six->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_six->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_nine
 			   // 
+			   this->basic_button_nine->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_nine->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_nine->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_nine->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_nine->Location = System::Drawing::Point(78, 147);
 			   this->basic_button_nine->Name = L"basic_button_nine";
 			   this->basic_button_nine->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_nine->TabIndex = 34;
+			   this->basic_button_nine->TabIndex = 0;
+			   this->basic_button_nine->TabStop = false;
 			   this->basic_button_nine->Text = L"9";
 			   this->basic_button_nine->UseVisualStyleBackColor = true;
 			   this->basic_button_nine->Click += gcnew System::EventHandler(this, &MyForm::basic_button_nine_Click);
+			   this->basic_button_nine->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_nine->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_seven
 			   // 
+			   this->basic_button_seven->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_seven->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_seven->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_seven->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_seven->Location = System::Drawing::Point(3, 147);
 			   this->basic_button_seven->Name = L"basic_button_seven";
 			   this->basic_button_seven->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_seven->TabIndex = 32;
+			   this->basic_button_seven->TabIndex = 0;
+			   this->basic_button_seven->TabStop = false;
 			   this->basic_button_seven->Text = L"7";
 			   this->basic_button_seven->UseVisualStyleBackColor = true;
 			   this->basic_button_seven->Click += gcnew System::EventHandler(this, &MyForm::basic_button_seven_Click);
+			   this->basic_button_seven->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_seven->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_miltiplication
 			   // 
+			   this->basic_button_miltiplication->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_miltiplication->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_miltiplication->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_miltiplication->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_miltiplication->Location = System::Drawing::Point(228, 147);
 			   this->basic_button_miltiplication->Name = L"basic_button_miltiplication";
 			   this->basic_button_miltiplication->Size = System::Drawing::Size(72, 66);
-			   this->basic_button_miltiplication->TabIndex = 33;
+			   this->basic_button_miltiplication->TabIndex = 0;
+			   this->basic_button_miltiplication->TabStop = false;
 			   this->basic_button_miltiplication->Text = L"*";
 			   this->basic_button_miltiplication->UseVisualStyleBackColor = true;
 			   this->basic_button_miltiplication->Click += gcnew System::EventHandler(this, &MyForm::basic_button_miltiplication_Click);
+			   this->basic_button_miltiplication->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_miltiplication->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_eight
 			   // 
+			   this->basic_button_eight->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_eight->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_eight->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_eight->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_eight->Location = System::Drawing::Point(153, 147);
 			   this->basic_button_eight->Name = L"basic_button_eight";
 			   this->basic_button_eight->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_eight->TabIndex = 31;
+			   this->basic_button_eight->TabIndex = 0;
+			   this->basic_button_eight->TabStop = false;
 			   this->basic_button_eight->Text = L"8";
 			   this->basic_button_eight->UseVisualStyleBackColor = true;
 			   this->basic_button_eight->Click += gcnew System::EventHandler(this, &MyForm::basic_button_eight_Click);
+			   this->basic_button_eight->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_eight->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_power_two
 			   // 
+			   this->basic_button_power_two->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_power_two->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_power_two->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_power_two->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_power_two->Location = System::Drawing::Point(78, 75);
 			   this->basic_button_power_two->Name = L"basic_button_power_two";
 			   this->basic_button_power_two->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_power_two->TabIndex = 30;
+			   this->basic_button_power_two->TabIndex = 0;
+			   this->basic_button_power_two->TabStop = false;
 			   this->basic_button_power_two->Text = L"x²";
 			   this->basic_button_power_two->UseVisualStyleBackColor = true;
 			   this->basic_button_power_two->Click += gcnew System::EventHandler(this, &MyForm::basic_button_power_two_Click);
+			   this->basic_button_power_two->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_power_two->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_one_divided_by
 			   // 
+			   this->basic_button_one_divided_by->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_one_divided_by->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_one_divided_by->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_one_divided_by->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_one_divided_by->Location = System::Drawing::Point(3, 75);
 			   this->basic_button_one_divided_by->Name = L"basic_button_one_divided_by";
 			   this->basic_button_one_divided_by->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_one_divided_by->TabIndex = 29;
+			   this->basic_button_one_divided_by->TabIndex = 0;
+			   this->basic_button_one_divided_by->TabStop = false;
 			   this->basic_button_one_divided_by->Text = L"⅟x";
 			   this->basic_button_one_divided_by->UseVisualStyleBackColor = true;
 			   this->basic_button_one_divided_by->Click += gcnew System::EventHandler(this, &MyForm::basic_button_one_divided_by_Click);
+			   this->basic_button_one_divided_by->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_one_divided_by->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_division
 			   // 
+			   this->basic_button_division->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_division->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_division->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_division->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_division->Location = System::Drawing::Point(228, 75);
 			   this->basic_button_division->Name = L"basic_button_division";
 			   this->basic_button_division->Size = System::Drawing::Size(72, 66);
-			   this->basic_button_division->TabIndex = 28;
+			   this->basic_button_division->TabIndex = 0;
+			   this->basic_button_division->TabStop = false;
 			   this->basic_button_division->Text = L"/";
 			   this->basic_button_division->UseVisualStyleBackColor = true;
 			   this->basic_button_division->Click += gcnew System::EventHandler(this, &MyForm::basic_button_division_Click);
+			   this->basic_button_division->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_division->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_square_root
 			   // 
+			   this->basic_button_square_root->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_square_root->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_square_root->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_square_root->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_square_root->Location = System::Drawing::Point(153, 75);
 			   this->basic_button_square_root->Name = L"basic_button_square_root";
 			   this->basic_button_square_root->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_square_root->TabIndex = 27;
+			   this->basic_button_square_root->TabIndex = 0;
+			   this->basic_button_square_root->TabStop = false;
 			   this->basic_button_square_root->Text = L"√x";
 			   this->basic_button_square_root->UseVisualStyleBackColor = true;
 			   this->basic_button_square_root->Click += gcnew System::EventHandler(this, &MyForm::basic_button_square_root_Click);
+			   this->basic_button_square_root->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_square_root->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_clear_everything
 			   // 
+			   this->basic_button_clear_everything->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_clear_everything->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_clear_everything->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_clear_everything->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_clear_everything->Location = System::Drawing::Point(78, 3);
 			   this->basic_button_clear_everything->Name = L"basic_button_clear_everything";
 			   this->basic_button_clear_everything->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_clear_everything->TabIndex = 26;
+			   this->basic_button_clear_everything->TabIndex = 0;
+			   this->basic_button_clear_everything->TabStop = false;
 			   this->basic_button_clear_everything->Text = L"CE";
 			   this->basic_button_clear_everything->UseVisualStyleBackColor = true;
 			   this->basic_button_clear_everything->Click += gcnew System::EventHandler(this, &MyForm::basic_button_clear_everything_Click);
+			   this->basic_button_clear_everything->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_clear_everything->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_percent
 			   // 
+			   this->basic_button_percent->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_percent->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_percent->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_percent->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_percent->Location = System::Drawing::Point(3, 3);
 			   this->basic_button_percent->Name = L"basic_button_percent";
 			   this->basic_button_percent->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_percent->TabIndex = 25;
+			   this->basic_button_percent->TabIndex = 0;
+			   this->basic_button_percent->TabStop = false;
 			   this->basic_button_percent->Text = L"%";
 			   this->basic_button_percent->UseVisualStyleBackColor = true;
 			   this->basic_button_percent->Click += gcnew System::EventHandler(this, &MyForm::basic_button_percent_Click);
+			   this->basic_button_percent->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_percent->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_delete
 			   // 
+			   this->basic_button_delete->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_delete->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_delete->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_delete->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_delete->Location = System::Drawing::Point(228, 3);
 			   this->basic_button_delete->Name = L"basic_button_delete";
 			   this->basic_button_delete->Size = System::Drawing::Size(72, 66);
-			   this->basic_button_delete->TabIndex = 24;
-			   this->basic_button_delete->Text = L"<=";
+			   this->basic_button_delete->TabIndex = 0;
+			   this->basic_button_delete->TabStop = false;
+			   this->basic_button_delete->Text = L"⇐";
 			   this->basic_button_delete->UseVisualStyleBackColor = true;
 			   this->basic_button_delete->Click += gcnew System::EventHandler(this, &MyForm::basic_button_delete_Click);
+			   this->basic_button_delete->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_delete->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // basic_button_clear
 			   // 
+			   this->basic_button_clear->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			   this->basic_button_clear->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->basic_button_clear->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_clear->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_clear->Location = System::Drawing::Point(153, 3);
 			   this->basic_button_clear->Name = L"basic_button_clear";
 			   this->basic_button_clear->Size = System::Drawing::Size(69, 66);
-			   this->basic_button_clear->TabIndex = 23;
+			   this->basic_button_clear->TabIndex = 0;
+			   this->basic_button_clear->TabStop = false;
 			   this->basic_button_clear->Text = L"C";
 			   this->basic_button_clear->UseVisualStyleBackColor = true;
 			   this->basic_button_clear->Click += gcnew System::EventHandler(this, &MyForm::basic_button_clear_Click);
+			   this->basic_button_clear->Enter += gcnew System::EventHandler(this, &MyForm::FocusListener);
+			   this->basic_button_clear->Leave += gcnew System::EventHandler(this, &MyForm::FocusListener);
 			   // 
 			   // MyForm
 			   // 
@@ -1029,6 +1218,7 @@ namespace Convo {
 			   this->KeyPreview = true;
 			   this->MinimumSize = System::Drawing::Size(400, 600);
 			   this->Name = L"MyForm";
+			   this->SizeGripStyle = System::Windows::Forms::SizeGripStyle::Show;
 			   this->Text = L"MyForm";
 			   this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::KeyListener);
 			   this->menu_top->ResumeLayout(false);
@@ -1052,6 +1242,11 @@ namespace Convo {
 
 		   }
 #pragma endregion
+
+	private: Void FocusListener(Object^ sender, EventArgs^ e) {
+		this->Focus();
+		this->ActiveControl = nullptr;
+	}
 
 	private: Void button_controll_left_menu_Click(Object^ sender, EventArgs^ e) {
 		if (menu_left->Visible && this->Width < 600) {
@@ -1361,7 +1556,7 @@ namespace Convo {
 				basic_button_clear_everything->PerformClick();
 			}
 			basic_label_result_input->Text += "9";
-		}
+	}
 
 
 
@@ -1408,9 +1603,8 @@ namespace Convo {
 		}
 	
 	private: Void convert_button_nine_Click(Object^ sender, EventArgs^ e) {
-			label_conversion_input->Text += "9";
-		}
-	
+		label_conversion_input->Text += "9";
+	}
 	private: Void convert_button_period_Click(Object^ sender, EventArgs^ e) {
 			if (!label_conversion_input->Text->ToString()->Contains(",")) {
 				if (label_conversion_input->Text->Length == 0) {
@@ -1419,13 +1613,14 @@ namespace Convo {
 				label_conversion_input->Text += ",";
 				}
 			}
-		}
+	}
 	
 	private: Void convert_button_erase_Click(Object^ sender, EventArgs^ e) {
 			if (label_conversion_input->Text->Length > 0) {
 				label_conversion_input->Text = label_conversion_input->Text->Substring(0, label_conversion_input->Text->Length - 1);
 			}
-		}
+	}
+
 	
 	private: Void convert_button_erase_everything_Click(Object^ sender, EventArgs^ e) {
 		label_conversion_input->ResetText();
@@ -1433,7 +1628,6 @@ namespace Convo {
 	}
 		   
 	private: Void KeyListener(Object^ sender, KeyEventArgs^ e) {
-		Console::WriteLine(sender);
 		if (panel_basic->Visible) {
 			switch (e->KeyCode) {
 				//Numpad number Keys
@@ -1470,6 +1664,7 @@ namespace Convo {
 			case Keys::OemMinus:basic_button_subtraction->PerformClick();		break;
 			case Keys::OemPeriod:basic_button_period->PerformClick();			break;
 			case Keys::Back:basic_button_delete->PerformClick();				break;
+			case Keys::Tab:button_controll_left_menu->PerformClick();			break;
 			default:
 				break;
 			}
@@ -1479,33 +1674,34 @@ namespace Convo {
 			case Keys::NumPad0:convert_button_zero->PerformClick();		break;
 			case Keys::NumPad1:convert_button_one->PerformClick();		break;
 			case Keys::NumPad2:convert_button_two->PerformClick();		break;
-			case Keys::NumPad3:convert_button_three->PerformClick();		break;
+			case Keys::NumPad3:convert_button_three->PerformClick();	break;
 			case Keys::NumPad4:convert_button_four->PerformClick();		break;
 			case Keys::NumPad5:convert_button_five->PerformClick();		break;
 			case Keys::NumPad6:convert_button_six->PerformClick();		break;
-			case Keys::NumPad7:convert_button_seven->PerformClick();		break;
-			case Keys::NumPad8:convert_button_eight->PerformClick();		break;
+			case Keys::NumPad7:convert_button_seven->PerformClick();	break;
+			case Keys::NumPad8:convert_button_eight->PerformClick();	break;
 			case Keys::NumPad9:convert_button_nine->PerformClick();		break;
 				//Number Keys
 			case Keys::D0:convert_button_zero->PerformClick();			break;
-			case Keys::D1:convert_button_one->PerformClick();				break;
-			case Keys::D2:convert_button_two->PerformClick();				break;
+			case Keys::D1:convert_button_one->PerformClick();			break;
+			case Keys::D2:convert_button_two->PerformClick();			break;
 			case Keys::D3:convert_button_three->PerformClick();			break;
 			case Keys::D4:convert_button_four->PerformClick();			break;
 			case Keys::D5:convert_button_five->PerformClick();			break;
-			case Keys::D6:convert_button_six->PerformClick();				break;
+			case Keys::D6:convert_button_six->PerformClick();			break;
 			case Keys::D7:convert_button_seven->PerformClick();			break;
 			case Keys::D8:convert_button_eight->PerformClick();			break;
 			case Keys::D9:convert_button_nine->PerformClick();			break;
 				//Action Buttons
 			case Keys::Delete:convert_button_erase_everything->PerformClick();	break;
-			case Keys::Decimal:convert_button_period->PerformClick();				break;
+			case Keys::Decimal:convert_button_period->PerformClick();			break;
 			case Keys::OemPeriod:convert_button_period->PerformClick();			break;
 			case Keys::Back:convert_button_erase->PerformClick();				break;
 			default:
 				break;
 			}
 		}
+		this->Focus();
 		e->Handled = true;
 		e->SuppressKeyPress = true;
 	}
@@ -1542,9 +1738,9 @@ namespace Convo {
 				URL += "&to=" + getValueFromHash(% speeds, combo_to->SelectedItem->ToString());
 			}
 			URL += "&value=" +value;
-			for each (KeyValuePair<String^,Object^>^ var in API::MakeHttpRequest(URL, nullptr))
-				if (var->Key->Equals("result")) 
-					label_conversion_result->Text = var->Value->ToString()
+			for each (KeyValuePair<String^, Object^> ^ var in API::MakeHttpRequest(URL, nullptr))
+				if (var->Key->Equals("result"))
+					label_conversion_result->Text = var->Value->ToString();
 		}
 		
 	}

@@ -91,8 +91,15 @@ namespace Convo {
 	private: ToolStripButton^ button_Area;
 	private: ToolStripLabel^ label_top_operaion;
 	private: Label^ label_conversion_input;
-	private: TableLayoutPanel^ tableLayoutPanel1;
-	private: SplitContainer^ splitContainer1;
+	private: System::Windows::Forms::TableLayoutPanel^ table_convert;
+	private: System::Windows::Forms::SplitContainer^ split_convert;
+
+
+
+
+
+
+
 	private: Button^ convert_button_zero;
 	private: Button^ convert_button_one;
 	private: Button^ convert_button_two;
@@ -111,10 +118,15 @@ namespace Convo {
 	private: ComboBox^ combo_to;
 	private: Label^ label_conversion_from;
 	private: Label^ label_conversion_to;
-	private: SplitContainer^ splitContainer2;
+private: System::Windows::Forms::SplitContainer^ split_basic;
+
+
+
+
 	private: Label^ basic_label_result_input;
 	private: Label^ basic_label_action;
-	private: TableLayoutPanel^ tableLayoutPanel2;
+private: System::Windows::Forms::TableLayoutPanel^ table_basic;
+
 	private: Button^ basic_button_two;
 	private: Button^ basic_button_one;
 	private: Button^ basic_button_addition;
@@ -171,14 +183,14 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->button_Area = (gcnew System::Windows::Forms::ToolStripButton());
 			   this->button_Speed = (gcnew System::Windows::Forms::ToolStripButton());
 			   this->panel_conversion = (gcnew System::Windows::Forms::Panel());
-			   this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
+			   this->split_convert = (gcnew System::Windows::Forms::SplitContainer());
 			   this->combo_from = (gcnew System::Windows::Forms::ComboBox());
 			   this->label_conversion_from = (gcnew System::Windows::Forms::Label());
 			   this->label_conversion_input = (gcnew System::Windows::Forms::Label());
 			   this->combo_to = (gcnew System::Windows::Forms::ComboBox());
 			   this->label_conversion_to = (gcnew System::Windows::Forms::Label());
 			   this->label_conversion_result = (gcnew System::Windows::Forms::Label());
-			   this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			   this->table_convert = (gcnew System::Windows::Forms::TableLayoutPanel());
 			   this->convert_button_period = (gcnew System::Windows::Forms::Button());
 			   this->convert_button_zero = (gcnew System::Windows::Forms::Button());
 			   this->convert_button_one = (gcnew System::Windows::Forms::Button());
@@ -193,10 +205,10 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_erase = (gcnew System::Windows::Forms::Button());
 			   this->convert_button_erase_everything = (gcnew System::Windows::Forms::Button());
 			   this->panel_basic = (gcnew System::Windows::Forms::Panel());
-			   this->splitContainer2 = (gcnew System::Windows::Forms::SplitContainer());
+			   this->split_basic = (gcnew System::Windows::Forms::SplitContainer());
 			   this->basic_label_action = (gcnew System::Windows::Forms::Label());
 			   this->basic_label_result_input = (gcnew System::Windows::Forms::Label());
-			   this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			   this->table_basic = (gcnew System::Windows::Forms::TableLayoutPanel());
 			   this->basic_button_zero = (gcnew System::Windows::Forms::Button());
 			   this->basic_button_plus_minus = (gcnew System::Windows::Forms::Button());
 			   this->basic_button_equals = (gcnew System::Windows::Forms::Button());
@@ -224,17 +236,17 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->menu_top->SuspendLayout();
 			   this->menu_left->SuspendLayout();
 			   this->panel_conversion->SuspendLayout();
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->BeginInit();
-			   this->splitContainer1->Panel1->SuspendLayout();
-			   this->splitContainer1->Panel2->SuspendLayout();
-			   this->splitContainer1->SuspendLayout();
-			   this->tableLayoutPanel1->SuspendLayout();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->split_convert))->BeginInit();
+			   this->split_convert->Panel1->SuspendLayout();
+			   this->split_convert->Panel2->SuspendLayout();
+			   this->split_convert->SuspendLayout();
+			   this->table_convert->SuspendLayout();
 			   this->panel_basic->SuspendLayout();
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer2))->BeginInit();
-			   this->splitContainer2->Panel1->SuspendLayout();
-			   this->splitContainer2->Panel2->SuspendLayout();
-			   this->splitContainer2->SuspendLayout();
-			   this->tableLayoutPanel2->SuspendLayout();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->split_basic))->BeginInit();
+			   this->split_basic->Panel1->SuspendLayout();
+			   this->split_basic->Panel2->SuspendLayout();
+			   this->split_basic->SuspendLayout();
+			   this->table_basic->SuspendLayout();
 			   this->SuspendLayout();
 			   // 
 			   // menu_top
@@ -372,8 +384,8 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   // 
 			   // panel_conversion
 			   // 
-			   this->panel_conversion->Controls->Add(this->splitContainer1);
-			   this->panel_conversion->Controls->Add(this->tableLayoutPanel1);
+			   this->panel_conversion->Controls->Add(this->split_convert);
+			   this->panel_conversion->Controls->Add(this->table_convert);
 			   this->panel_conversion->Dock = System::Windows::Forms::DockStyle::Fill;
 			   this->panel_conversion->Location = System::Drawing::Point(78, 25);
 			   this->panel_conversion->Name = L"panel_conversion";
@@ -381,28 +393,27 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->panel_conversion->TabIndex = 3;
 			   this->panel_conversion->Visible = false;
 			   // 
-			   // splitContainer1
+			   // split_convert
 			   // 
-			   this->splitContainer1->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->splitContainer1->FixedPanel = System::Windows::Forms::FixedPanel::Panel1;
-			   this->splitContainer1->Location = System::Drawing::Point(0, 0);
-			   this->splitContainer1->Name = L"splitContainer1";
-			   this->splitContainer1->Orientation = System::Windows::Forms::Orientation::Horizontal;
+			   this->split_convert->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->split_convert->Location = System::Drawing::Point(0, 0);
+			   this->split_convert->Name = L"split_convert";
+			   this->split_convert->Orientation = System::Windows::Forms::Orientation::Horizontal;
 			   // 
-			   // splitContainer1.Panel1
+			   // split_convert.Panel1
 			   // 
-			   this->splitContainer1->Panel1->Controls->Add(this->combo_from);
-			   this->splitContainer1->Panel1->Controls->Add(this->label_conversion_from);
-			   this->splitContainer1->Panel1->Controls->Add(this->label_conversion_input);
+			   this->split_convert->Panel1->Controls->Add(this->combo_from);
+			   this->split_convert->Panel1->Controls->Add(this->label_conversion_from);
+			   this->split_convert->Panel1->Controls->Add(this->label_conversion_input);
 			   // 
-			   // splitContainer1.Panel2
+			   // split_convert.Panel2
 			   // 
-			   this->splitContainer1->Panel2->Controls->Add(this->combo_to);
-			   this->splitContainer1->Panel2->Controls->Add(this->label_conversion_to);
-			   this->splitContainer1->Panel2->Controls->Add(this->label_conversion_result);
-			   this->splitContainer1->Size = System::Drawing::Size(306, 100);
-			   this->splitContainer1->SplitterDistance = 47;
-			   this->splitContainer1->TabIndex = 3;
+			   this->split_convert->Panel2->Controls->Add(this->combo_to);
+			   this->split_convert->Panel2->Controls->Add(this->label_conversion_to);
+			   this->split_convert->Panel2->Controls->Add(this->label_conversion_result);
+			   this->split_convert->Size = System::Drawing::Size(306, 104);
+			   this->split_convert->SplitterDistance = 48;
+			   this->split_convert->TabIndex = 3;
 			   // 
 			   // combo_from
 			   // 
@@ -412,7 +423,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->combo_from->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			   this->combo_from->ForeColor = System::Drawing::Color::White;
 			   this->combo_from->FormattingEnabled = true;
-			   this->combo_from->Location = System::Drawing::Point(65, 26);
+			   this->combo_from->Location = System::Drawing::Point(65, 27);
 			   this->combo_from->Name = L"combo_from";
 			   this->combo_from->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			   this->combo_from->Size = System::Drawing::Size(241, 21);
@@ -428,7 +439,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->label_conversion_from->ForeColor = System::Drawing::Color::White;
 			   this->label_conversion_from->Location = System::Drawing::Point(0, 29);
 			   this->label_conversion_from->Name = L"label_conversion_from";
-			   this->label_conversion_from->Size = System::Drawing::Size(65, 18);
+			   this->label_conversion_from->Size = System::Drawing::Size(65, 19);
 			   this->label_conversion_from->TabIndex = 4;
 			   this->label_conversion_from->Text = L"FROM:";
 			   this->label_conversion_from->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
@@ -454,7 +465,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->combo_to->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			   this->combo_to->ForeColor = System::Drawing::Color::White;
 			   this->combo_to->FormattingEnabled = true;
-			   this->combo_to->Location = System::Drawing::Point(65, 28);
+			   this->combo_to->Location = System::Drawing::Point(65, 31);
 			   this->combo_to->Name = L"combo_to";
 			   this->combo_to->Size = System::Drawing::Size(241, 21);
 			   this->combo_to->TabIndex = 2;
@@ -469,7 +480,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->label_conversion_to->ForeColor = System::Drawing::Color::White;
 			   this->label_conversion_to->Location = System::Drawing::Point(0, 27);
 			   this->label_conversion_to->Name = L"label_conversion_to";
-			   this->label_conversion_to->Size = System::Drawing::Size(65, 22);
+			   this->label_conversion_to->Size = System::Drawing::Size(65, 25);
 			   this->label_conversion_to->TabIndex = 5;
 			   this->label_conversion_to->Text = L"TO:";
 			   this->label_conversion_to->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
@@ -486,42 +497,40 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->label_conversion_result->TabIndex = 0;
 			   this->label_conversion_result->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			   // 
-			   // tableLayoutPanel1
+			   // table_convert
 			   // 
-			   this->tableLayoutPanel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				   | System::Windows::Forms::AnchorStyles::Left)
-				   | System::Windows::Forms::AnchorStyles::Right));
-			   this->tableLayoutPanel1->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			   this->tableLayoutPanel1->ColumnCount = 3;
-			   this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+			   this->table_convert->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			   this->table_convert->ColumnCount = 3;
+			   this->table_convert->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
 				   33.33332F)));
-			   this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+			   this->table_convert->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
 				   33.33334F)));
-			   this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+			   this->table_convert->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
 				   33.33334F)));
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_period, 2, 4);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_zero, 1, 4);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_one, 0, 3);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_two, 0, 3);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_three, 0, 3);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_six, 0, 2);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_five, 0, 2);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_four, 0, 2);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_seven, 0, 1);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_eight, 0, 1);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_nine, 0, 1);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_erase, 2, 0);
-			   this->tableLayoutPanel1->Controls->Add(this->convert_button_erase_everything, 1, 0);
-			   this->tableLayoutPanel1->Location = System::Drawing::Point(0, 106);
-			   this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
-			   this->tableLayoutPanel1->RowCount = 5;
-			   this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			   this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			   this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			   this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			   this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			   this->tableLayoutPanel1->Size = System::Drawing::Size(303, 427);
-			   this->tableLayoutPanel1->TabIndex = 2;
+			   this->table_convert->Controls->Add(this->convert_button_period, 2, 4);
+			   this->table_convert->Controls->Add(this->convert_button_zero, 1, 4);
+			   this->table_convert->Controls->Add(this->convert_button_one, 0, 3);
+			   this->table_convert->Controls->Add(this->convert_button_two, 0, 3);
+			   this->table_convert->Controls->Add(this->convert_button_three, 0, 3);
+			   this->table_convert->Controls->Add(this->convert_button_six, 0, 2);
+			   this->table_convert->Controls->Add(this->convert_button_five, 0, 2);
+			   this->table_convert->Controls->Add(this->convert_button_four, 0, 2);
+			   this->table_convert->Controls->Add(this->convert_button_seven, 0, 1);
+			   this->table_convert->Controls->Add(this->convert_button_eight, 0, 1);
+			   this->table_convert->Controls->Add(this->convert_button_nine, 0, 1);
+			   this->table_convert->Controls->Add(this->convert_button_erase, 2, 0);
+			   this->table_convert->Controls->Add(this->convert_button_erase_everything, 1, 0);
+			   this->table_convert->Dock = System::Windows::Forms::DockStyle::Bottom;
+			   this->table_convert->Location = System::Drawing::Point(0, 110);
+			   this->table_convert->Name = L"table_convert";
+			   this->table_convert->RowCount = 5;
+			   this->table_convert->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			   this->table_convert->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			   this->table_convert->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			   this->table_convert->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			   this->table_convert->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			   this->table_convert->Size = System::Drawing::Size(306, 426);
+			   this->table_convert->TabIndex = 2;
 			   // 
 			   // convert_button_period
 			   // 
@@ -530,9 +539,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_period->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_period->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_period->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_period->Location = System::Drawing::Point(204, 343);
+			   this->convert_button_period->Location = System::Drawing::Point(206, 343);
 			   this->convert_button_period->Name = L"convert_button_period";
-			   this->convert_button_period->Size = System::Drawing::Size(96, 81);
+			   this->convert_button_period->Size = System::Drawing::Size(97, 80);
 			   this->convert_button_period->TabIndex = 13;
 			   this->convert_button_period->TabStop = false;
 			   this->convert_button_period->Text = L",";
@@ -547,9 +556,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_zero->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_zero->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_zero->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_zero->Location = System::Drawing::Point(103, 343);
+			   this->convert_button_zero->Location = System::Drawing::Point(104, 343);
 			   this->convert_button_zero->Name = L"convert_button_zero";
-			   this->convert_button_zero->Size = System::Drawing::Size(95, 81);
+			   this->convert_button_zero->Size = System::Drawing::Size(96, 80);
 			   this->convert_button_zero->TabIndex = 12;
 			   this->convert_button_zero->TabStop = false;
 			   this->convert_button_zero->Text = L"0";
@@ -566,7 +575,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_one->ForeColor = System::Drawing::Color::White;
 			   this->convert_button_one->Location = System::Drawing::Point(3, 258);
 			   this->convert_button_one->Name = L"convert_button_one";
-			   this->convert_button_one->Size = System::Drawing::Size(94, 79);
+			   this->convert_button_one->Size = System::Drawing::Size(95, 79);
 			   this->convert_button_one->TabIndex = 11;
 			   this->convert_button_one->TabStop = false;
 			   this->convert_button_one->Text = L"1";
@@ -581,9 +590,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_two->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_two->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_two->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_two->Location = System::Drawing::Point(103, 258);
+			   this->convert_button_two->Location = System::Drawing::Point(104, 258);
 			   this->convert_button_two->Name = L"convert_button_two";
-			   this->convert_button_two->Size = System::Drawing::Size(95, 79);
+			   this->convert_button_two->Size = System::Drawing::Size(96, 79);
 			   this->convert_button_two->TabIndex = 10;
 			   this->convert_button_two->TabStop = false;
 			   this->convert_button_two->Text = L"2";
@@ -598,9 +607,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_three->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_three->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_three->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_three->Location = System::Drawing::Point(204, 258);
+			   this->convert_button_three->Location = System::Drawing::Point(206, 258);
 			   this->convert_button_three->Name = L"convert_button_three";
-			   this->convert_button_three->Size = System::Drawing::Size(96, 79);
+			   this->convert_button_three->Size = System::Drawing::Size(97, 79);
 			   this->convert_button_three->TabIndex = 9;
 			   this->convert_button_three->TabStop = false;
 			   this->convert_button_three->Text = L"3";
@@ -615,9 +624,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_six->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_six->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_six->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_six->Location = System::Drawing::Point(204, 173);
+			   this->convert_button_six->Location = System::Drawing::Point(206, 173);
 			   this->convert_button_six->Name = L"convert_button_six";
-			   this->convert_button_six->Size = System::Drawing::Size(96, 79);
+			   this->convert_button_six->Size = System::Drawing::Size(97, 79);
 			   this->convert_button_six->TabIndex = 8;
 			   this->convert_button_six->TabStop = false;
 			   this->convert_button_six->Text = L"6";
@@ -632,9 +641,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_five->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_five->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_five->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_five->Location = System::Drawing::Point(103, 173);
+			   this->convert_button_five->Location = System::Drawing::Point(104, 173);
 			   this->convert_button_five->Name = L"convert_button_five";
-			   this->convert_button_five->Size = System::Drawing::Size(95, 79);
+			   this->convert_button_five->Size = System::Drawing::Size(96, 79);
 			   this->convert_button_five->TabIndex = 2;
 			   this->convert_button_five->TabStop = false;
 			   this->convert_button_five->Text = L"5";
@@ -651,7 +660,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_four->ForeColor = System::Drawing::Color::White;
 			   this->convert_button_four->Location = System::Drawing::Point(3, 173);
 			   this->convert_button_four->Name = L"convert_button_four";
-			   this->convert_button_four->Size = System::Drawing::Size(94, 79);
+			   this->convert_button_four->Size = System::Drawing::Size(95, 79);
 			   this->convert_button_four->TabIndex = 6;
 			   this->convert_button_four->TabStop = false;
 			   this->convert_button_four->Text = L"4";
@@ -668,7 +677,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_seven->ForeColor = System::Drawing::Color::White;
 			   this->convert_button_seven->Location = System::Drawing::Point(3, 88);
 			   this->convert_button_seven->Name = L"convert_button_seven";
-			   this->convert_button_seven->Size = System::Drawing::Size(94, 79);
+			   this->convert_button_seven->Size = System::Drawing::Size(95, 79);
 			   this->convert_button_seven->TabIndex = 5;
 			   this->convert_button_seven->TabStop = false;
 			   this->convert_button_seven->Text = L"7";
@@ -683,9 +692,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_eight->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_eight->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_eight->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_eight->Location = System::Drawing::Point(103, 88);
+			   this->convert_button_eight->Location = System::Drawing::Point(104, 88);
 			   this->convert_button_eight->Name = L"convert_button_eight";
-			   this->convert_button_eight->Size = System::Drawing::Size(95, 79);
+			   this->convert_button_eight->Size = System::Drawing::Size(96, 79);
 			   this->convert_button_eight->TabIndex = 4;
 			   this->convert_button_eight->TabStop = false;
 			   this->convert_button_eight->Text = L"8";
@@ -700,9 +709,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_nine->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_nine->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_nine->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_nine->Location = System::Drawing::Point(204, 88);
+			   this->convert_button_nine->Location = System::Drawing::Point(206, 88);
 			   this->convert_button_nine->Name = L"convert_button_nine";
-			   this->convert_button_nine->Size = System::Drawing::Size(96, 79);
+			   this->convert_button_nine->Size = System::Drawing::Size(97, 79);
 			   this->convert_button_nine->TabIndex = 3;
 			   this->convert_button_nine->TabStop = false;
 			   this->convert_button_nine->Text = L"9";
@@ -717,9 +726,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_erase->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_erase->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_erase->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_erase->Location = System::Drawing::Point(204, 3);
+			   this->convert_button_erase->Location = System::Drawing::Point(206, 3);
 			   this->convert_button_erase->Name = L"convert_button_erase";
-			   this->convert_button_erase->Size = System::Drawing::Size(96, 79);
+			   this->convert_button_erase->Size = System::Drawing::Size(97, 79);
 			   this->convert_button_erase->TabIndex = 2;
 			   this->convert_button_erase->TabStop = false;
 			   this->convert_button_erase->Text = L"<=";
@@ -734,9 +743,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->convert_button_erase_everything->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->convert_button_erase_everything->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->convert_button_erase_everything->ForeColor = System::Drawing::Color::White;
-			   this->convert_button_erase_everything->Location = System::Drawing::Point(103, 3);
+			   this->convert_button_erase_everything->Location = System::Drawing::Point(104, 3);
 			   this->convert_button_erase_everything->Name = L"convert_button_erase_everything";
-			   this->convert_button_erase_everything->Size = System::Drawing::Size(95, 79);
+			   this->convert_button_erase_everything->Size = System::Drawing::Size(96, 79);
 			   this->convert_button_erase_everything->TabIndex = 1;
 			   this->convert_button_erase_everything->TabStop = false;
 			   this->convert_button_erase_everything->Text = L"CE";
@@ -746,33 +755,32 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   // 
 			   // panel_basic
 			   // 
-			   this->panel_basic->Controls->Add(this->splitContainer2);
-			   this->panel_basic->Controls->Add(this->tableLayoutPanel2);
+			   this->panel_basic->Controls->Add(this->split_basic);
+			   this->panel_basic->Controls->Add(this->table_basic);
 			   this->panel_basic->Dock = System::Windows::Forms::DockStyle::Fill;
 			   this->panel_basic->Location = System::Drawing::Point(78, 25);
 			   this->panel_basic->Name = L"panel_basic";
 			   this->panel_basic->Size = System::Drawing::Size(306, 536);
 			   this->panel_basic->TabIndex = 4;
 			   // 
-			   // splitContainer2
+			   // split_basic
 			   // 
-			   this->splitContainer2->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->splitContainer2->FixedPanel = System::Windows::Forms::FixedPanel::Panel1;
-			   this->splitContainer2->Location = System::Drawing::Point(0, 0);
-			   this->splitContainer2->Name = L"splitContainer2";
-			   this->splitContainer2->Orientation = System::Windows::Forms::Orientation::Horizontal;
+			   this->split_basic->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->split_basic->Location = System::Drawing::Point(0, 0);
+			   this->split_basic->Name = L"split_basic";
+			   this->split_basic->Orientation = System::Windows::Forms::Orientation::Horizontal;
 			   // 
-			   // splitContainer2.Panel1
+			   // split_basic.Panel1
 			   // 
-			   this->splitContainer2->Panel1->Controls->Add(this->basic_label_action);
+			   this->split_basic->Panel1->Controls->Add(this->basic_label_action);
 			   // 
-			   // splitContainer2.Panel2
+			   // split_basic.Panel2
 			   // 
-			   this->splitContainer2->Panel2->Controls->Add(this->basic_label_result_input);
-			   this->splitContainer2->Size = System::Drawing::Size(306, 100);
-			   this->splitContainer2->SplitterDistance = 47;
-			   this->splitContainer2->TabIndex = 0;
-			   this->splitContainer2->TabStop = false;
+			   this->split_basic->Panel2->Controls->Add(this->basic_label_result_input);
+			   this->split_basic->Size = System::Drawing::Size(306, 100);
+			   this->split_basic->SplitterDistance = 47;
+			   this->split_basic->TabIndex = 0;
+			   this->split_basic->TabStop = false;
 			   // 
 			   // basic_label_action
 			   // 
@@ -798,57 +806,51 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_label_result_input->TabIndex = 0;
 			   this->basic_label_result_input->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			   // 
-			   // tableLayoutPanel2
+			   // table_basic
 			   // 
-			   this->tableLayoutPanel2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				   | System::Windows::Forms::AnchorStyles::Left)
-				   | System::Windows::Forms::AnchorStyles::Right));
-			   this->tableLayoutPanel2->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			   this->tableLayoutPanel2->ColumnCount = 4;
-			   this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				   25)));
-			   this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				   25)));
-			   this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				   25)));
-			   this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				   25)));
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_zero, 0, 5);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_plus_minus, 0, 5);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_equals, 0, 5);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_period, 0, 5);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_two, 0, 4);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_one, 0, 4);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_addition, 0, 4);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_three, 0, 4);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_five, 0, 3);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_four, 0, 3);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_subtraction, 0, 3);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_six, 0, 3);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_nine, 0, 2);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_seven, 0, 2);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_miltiplication, 0, 2);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_eight, 0, 2);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_power_two, 0, 1);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_one_divided_by, 0, 1);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_division, 0, 1);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_square_root, 0, 1);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_clear_everything, 0, 0);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_percent, 0, 0);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_delete, 0, 0);
-			   this->tableLayoutPanel2->Controls->Add(this->basic_button_clear, 0, 0);
-			   this->tableLayoutPanel2->Location = System::Drawing::Point(0, 100);
-			   this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
-			   this->tableLayoutPanel2->RowCount = 6;
-			   this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			   this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			   this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			   this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			   this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			   this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			   this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
-			   this->tableLayoutPanel2->Size = System::Drawing::Size(303, 433);
-			   this->tableLayoutPanel2->TabIndex = 3;
+			   this->table_basic->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			   this->table_basic->ColumnCount = 4;
+			   this->table_basic->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			   this->table_basic->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			   this->table_basic->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			   this->table_basic->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			   this->table_basic->Controls->Add(this->basic_button_zero, 0, 5);
+			   this->table_basic->Controls->Add(this->basic_button_plus_minus, 0, 5);
+			   this->table_basic->Controls->Add(this->basic_button_equals, 0, 5);
+			   this->table_basic->Controls->Add(this->basic_button_period, 0, 5);
+			   this->table_basic->Controls->Add(this->basic_button_two, 0, 4);
+			   this->table_basic->Controls->Add(this->basic_button_one, 0, 4);
+			   this->table_basic->Controls->Add(this->basic_button_addition, 0, 4);
+			   this->table_basic->Controls->Add(this->basic_button_three, 0, 4);
+			   this->table_basic->Controls->Add(this->basic_button_five, 0, 3);
+			   this->table_basic->Controls->Add(this->basic_button_four, 0, 3);
+			   this->table_basic->Controls->Add(this->basic_button_subtraction, 0, 3);
+			   this->table_basic->Controls->Add(this->basic_button_six, 0, 3);
+			   this->table_basic->Controls->Add(this->basic_button_nine, 0, 2);
+			   this->table_basic->Controls->Add(this->basic_button_seven, 0, 2);
+			   this->table_basic->Controls->Add(this->basic_button_miltiplication, 0, 2);
+			   this->table_basic->Controls->Add(this->basic_button_eight, 0, 2);
+			   this->table_basic->Controls->Add(this->basic_button_power_two, 0, 1);
+			   this->table_basic->Controls->Add(this->basic_button_one_divided_by, 0, 1);
+			   this->table_basic->Controls->Add(this->basic_button_division, 0, 1);
+			   this->table_basic->Controls->Add(this->basic_button_square_root, 0, 1);
+			   this->table_basic->Controls->Add(this->basic_button_clear_everything, 0, 0);
+			   this->table_basic->Controls->Add(this->basic_button_percent, 0, 0);
+			   this->table_basic->Controls->Add(this->basic_button_delete, 0, 0);
+			   this->table_basic->Controls->Add(this->basic_button_clear, 0, 0);
+			   this->table_basic->Dock = System::Windows::Forms::DockStyle::Bottom;
+			   this->table_basic->Location = System::Drawing::Point(0, 103);
+			   this->table_basic->Name = L"table_basic";
+			   this->table_basic->RowCount = 6;
+			   this->table_basic->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			   this->table_basic->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			   this->table_basic->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			   this->table_basic->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			   this->table_basic->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			   this->table_basic->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			   this->table_basic->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			   this->table_basic->Size = System::Drawing::Size(306, 433);
+			   this->table_basic->TabIndex = 3;
 			   // 
 			   // basic_button_zero
 			   // 
@@ -858,9 +860,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_zero->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_zero->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_zero->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_zero->Location = System::Drawing::Point(78, 363);
+			   this->basic_button_zero->Location = System::Drawing::Point(79, 363);
 			   this->basic_button_zero->Name = L"basic_button_zero";
-			   this->basic_button_zero->Size = System::Drawing::Size(69, 67);
+			   this->basic_button_zero->Size = System::Drawing::Size(70, 67);
 			   this->basic_button_zero->TabIndex = 0;
 			   this->basic_button_zero->TabStop = false;
 			   this->basic_button_zero->Text = L"0";
@@ -878,7 +880,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_plus_minus->ForeColor = System::Drawing::Color::White;
 			   this->basic_button_plus_minus->Location = System::Drawing::Point(3, 363);
 			   this->basic_button_plus_minus->Name = L"basic_button_plus_minus";
-			   this->basic_button_plus_minus->Size = System::Drawing::Size(69, 67);
+			   this->basic_button_plus_minus->Size = System::Drawing::Size(70, 67);
 			   this->basic_button_plus_minus->TabIndex = 0;
 			   this->basic_button_plus_minus->TabStop = false;
 			   this->basic_button_plus_minus->Text = L"±";
@@ -894,7 +896,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_equals->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_equals->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_equals->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_equals->Location = System::Drawing::Point(228, 363);
+			   this->basic_button_equals->Location = System::Drawing::Point(231, 363);
 			   this->basic_button_equals->Name = L"basic_button_equals";
 			   this->basic_button_equals->Size = System::Drawing::Size(72, 67);
 			   this->basic_button_equals->TabIndex = 0;
@@ -912,9 +914,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_period->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_period->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_period->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_period->Location = System::Drawing::Point(153, 363);
+			   this->basic_button_period->Location = System::Drawing::Point(155, 363);
 			   this->basic_button_period->Name = L"basic_button_period";
-			   this->basic_button_period->Size = System::Drawing::Size(69, 67);
+			   this->basic_button_period->Size = System::Drawing::Size(70, 67);
 			   this->basic_button_period->TabIndex = 0;
 			   this->basic_button_period->TabStop = false;
 			   this->basic_button_period->Text = L",";
@@ -930,9 +932,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_two->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_two->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_two->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_two->Location = System::Drawing::Point(78, 291);
+			   this->basic_button_two->Location = System::Drawing::Point(79, 291);
 			   this->basic_button_two->Name = L"basic_button_two";
-			   this->basic_button_two->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_two->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_two->TabIndex = 0;
 			   this->basic_button_two->TabStop = false;
 			   this->basic_button_two->Text = L"2";
@@ -950,7 +952,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_one->ForeColor = System::Drawing::Color::White;
 			   this->basic_button_one->Location = System::Drawing::Point(3, 291);
 			   this->basic_button_one->Name = L"basic_button_one";
-			   this->basic_button_one->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_one->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_one->TabIndex = 0;
 			   this->basic_button_one->TabStop = false;
 			   this->basic_button_one->Text = L"1";
@@ -966,7 +968,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_addition->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_addition->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_addition->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_addition->Location = System::Drawing::Point(228, 291);
+			   this->basic_button_addition->Location = System::Drawing::Point(231, 291);
 			   this->basic_button_addition->Name = L"basic_button_addition";
 			   this->basic_button_addition->Size = System::Drawing::Size(72, 66);
 			   this->basic_button_addition->TabIndex = 0;
@@ -984,9 +986,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_three->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_three->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_three->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_three->Location = System::Drawing::Point(153, 291);
+			   this->basic_button_three->Location = System::Drawing::Point(155, 291);
 			   this->basic_button_three->Name = L"basic_button_three";
-			   this->basic_button_three->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_three->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_three->TabIndex = 0;
 			   this->basic_button_three->TabStop = false;
 			   this->basic_button_three->Text = L"3";
@@ -1002,9 +1004,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_five->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_five->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_five->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_five->Location = System::Drawing::Point(78, 219);
+			   this->basic_button_five->Location = System::Drawing::Point(79, 219);
 			   this->basic_button_five->Name = L"basic_button_five";
-			   this->basic_button_five->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_five->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_five->TabIndex = 0;
 			   this->basic_button_five->TabStop = false;
 			   this->basic_button_five->Text = L"5";
@@ -1022,7 +1024,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_four->ForeColor = System::Drawing::Color::White;
 			   this->basic_button_four->Location = System::Drawing::Point(3, 219);
 			   this->basic_button_four->Name = L"basic_button_four";
-			   this->basic_button_four->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_four->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_four->TabIndex = 0;
 			   this->basic_button_four->TabStop = false;
 			   this->basic_button_four->Text = L"4";
@@ -1038,7 +1040,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_subtraction->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_subtraction->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_subtraction->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_subtraction->Location = System::Drawing::Point(228, 219);
+			   this->basic_button_subtraction->Location = System::Drawing::Point(231, 219);
 			   this->basic_button_subtraction->Name = L"basic_button_subtraction";
 			   this->basic_button_subtraction->Size = System::Drawing::Size(72, 66);
 			   this->basic_button_subtraction->TabIndex = 0;
@@ -1056,9 +1058,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_six->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_six->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_six->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_six->Location = System::Drawing::Point(153, 219);
+			   this->basic_button_six->Location = System::Drawing::Point(155, 219);
 			   this->basic_button_six->Name = L"basic_button_six";
-			   this->basic_button_six->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_six->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_six->TabIndex = 0;
 			   this->basic_button_six->TabStop = false;
 			   this->basic_button_six->Text = L"6";
@@ -1074,9 +1076,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_nine->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_nine->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_nine->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_nine->Location = System::Drawing::Point(78, 147);
+			   this->basic_button_nine->Location = System::Drawing::Point(79, 147);
 			   this->basic_button_nine->Name = L"basic_button_nine";
-			   this->basic_button_nine->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_nine->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_nine->TabIndex = 0;
 			   this->basic_button_nine->TabStop = false;
 			   this->basic_button_nine->Text = L"9";
@@ -1094,7 +1096,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_seven->ForeColor = System::Drawing::Color::White;
 			   this->basic_button_seven->Location = System::Drawing::Point(3, 147);
 			   this->basic_button_seven->Name = L"basic_button_seven";
-			   this->basic_button_seven->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_seven->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_seven->TabIndex = 0;
 			   this->basic_button_seven->TabStop = false;
 			   this->basic_button_seven->Text = L"7";
@@ -1110,7 +1112,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_miltiplication->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_miltiplication->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_miltiplication->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_miltiplication->Location = System::Drawing::Point(228, 147);
+			   this->basic_button_miltiplication->Location = System::Drawing::Point(231, 147);
 			   this->basic_button_miltiplication->Name = L"basic_button_miltiplication";
 			   this->basic_button_miltiplication->Size = System::Drawing::Size(72, 66);
 			   this->basic_button_miltiplication->TabIndex = 0;
@@ -1128,9 +1130,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_eight->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_eight->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_eight->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_eight->Location = System::Drawing::Point(153, 147);
+			   this->basic_button_eight->Location = System::Drawing::Point(155, 147);
 			   this->basic_button_eight->Name = L"basic_button_eight";
-			   this->basic_button_eight->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_eight->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_eight->TabIndex = 0;
 			   this->basic_button_eight->TabStop = false;
 			   this->basic_button_eight->Text = L"8";
@@ -1146,9 +1148,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_power_two->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_power_two->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_power_two->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_power_two->Location = System::Drawing::Point(78, 75);
+			   this->basic_button_power_two->Location = System::Drawing::Point(79, 75);
 			   this->basic_button_power_two->Name = L"basic_button_power_two";
-			   this->basic_button_power_two->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_power_two->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_power_two->TabIndex = 0;
 			   this->basic_button_power_two->TabStop = false;
 			   this->basic_button_power_two->Text = L"x²";
@@ -1166,7 +1168,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_one_divided_by->ForeColor = System::Drawing::Color::White;
 			   this->basic_button_one_divided_by->Location = System::Drawing::Point(3, 75);
 			   this->basic_button_one_divided_by->Name = L"basic_button_one_divided_by";
-			   this->basic_button_one_divided_by->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_one_divided_by->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_one_divided_by->TabIndex = 0;
 			   this->basic_button_one_divided_by->TabStop = false;
 			   this->basic_button_one_divided_by->Text = L"⅟x";
@@ -1182,7 +1184,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_division->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_division->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_division->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_division->Location = System::Drawing::Point(228, 75);
+			   this->basic_button_division->Location = System::Drawing::Point(231, 75);
 			   this->basic_button_division->Name = L"basic_button_division";
 			   this->basic_button_division->Size = System::Drawing::Size(72, 66);
 			   this->basic_button_division->TabIndex = 0;
@@ -1200,9 +1202,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_square_root->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_square_root->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_square_root->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_square_root->Location = System::Drawing::Point(153, 75);
+			   this->basic_button_square_root->Location = System::Drawing::Point(155, 75);
 			   this->basic_button_square_root->Name = L"basic_button_square_root";
-			   this->basic_button_square_root->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_square_root->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_square_root->TabIndex = 0;
 			   this->basic_button_square_root->TabStop = false;
 			   this->basic_button_square_root->Text = L"√x";
@@ -1218,9 +1220,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_clear_everything->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_clear_everything->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_clear_everything->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_clear_everything->Location = System::Drawing::Point(78, 3);
+			   this->basic_button_clear_everything->Location = System::Drawing::Point(79, 3);
 			   this->basic_button_clear_everything->Name = L"basic_button_clear_everything";
-			   this->basic_button_clear_everything->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_clear_everything->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_clear_everything->TabIndex = 0;
 			   this->basic_button_clear_everything->TabStop = false;
 			   this->basic_button_clear_everything->Text = L"CE";
@@ -1238,7 +1240,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_percent->ForeColor = System::Drawing::Color::White;
 			   this->basic_button_percent->Location = System::Drawing::Point(3, 3);
 			   this->basic_button_percent->Name = L"basic_button_percent";
-			   this->basic_button_percent->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_percent->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_percent->TabIndex = 0;
 			   this->basic_button_percent->TabStop = false;
 			   this->basic_button_percent->Text = L"%";
@@ -1254,7 +1256,7 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_delete->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_delete->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_delete->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_delete->Location = System::Drawing::Point(228, 3);
+			   this->basic_button_delete->Location = System::Drawing::Point(231, 3);
 			   this->basic_button_delete->Name = L"basic_button_delete";
 			   this->basic_button_delete->Size = System::Drawing::Size(72, 66);
 			   this->basic_button_delete->TabIndex = 0;
@@ -1272,9 +1274,9 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->basic_button_clear->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->basic_button_clear->Font = (gcnew System::Drawing::Font(L"Roboto Slab", 14.25F));
 			   this->basic_button_clear->ForeColor = System::Drawing::Color::White;
-			   this->basic_button_clear->Location = System::Drawing::Point(153, 3);
+			   this->basic_button_clear->Location = System::Drawing::Point(155, 3);
 			   this->basic_button_clear->Name = L"basic_button_clear";
-			   this->basic_button_clear->Size = System::Drawing::Size(69, 66);
+			   this->basic_button_clear->Size = System::Drawing::Size(70, 66);
 			   this->basic_button_clear->TabIndex = 0;
 			   this->basic_button_clear->TabStop = false;
 			   this->basic_button_clear->Text = L"C";
@@ -1297,23 +1299,24 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 			   this->Name = L"MainForm";
 			   this->SizeGripStyle = System::Windows::Forms::SizeGripStyle::Show;
 			   this->Text = L"MainForm";
+			   this->SizeChanged += gcnew System::EventHandler(this, &MainForm::FormSizeListener);
 			   this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MainForm::KeyListener);
 			   this->menu_top->ResumeLayout(false);
 			   this->menu_top->PerformLayout();
 			   this->menu_left->ResumeLayout(false);
 			   this->menu_left->PerformLayout();
 			   this->panel_conversion->ResumeLayout(false);
-			   this->splitContainer1->Panel1->ResumeLayout(false);
-			   this->splitContainer1->Panel2->ResumeLayout(false);
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->EndInit();
-			   this->splitContainer1->ResumeLayout(false);
-			   this->tableLayoutPanel1->ResumeLayout(false);
+			   this->split_convert->Panel1->ResumeLayout(false);
+			   this->split_convert->Panel2->ResumeLayout(false);
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->split_convert))->EndInit();
+			   this->split_convert->ResumeLayout(false);
+			   this->table_convert->ResumeLayout(false);
 			   this->panel_basic->ResumeLayout(false);
-			   this->splitContainer2->Panel1->ResumeLayout(false);
-			   this->splitContainer2->Panel2->ResumeLayout(false);
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer2))->EndInit();
-			   this->splitContainer2->ResumeLayout(false);
-			   this->tableLayoutPanel2->ResumeLayout(false);
+			   this->split_basic->Panel1->ResumeLayout(false);
+			   this->split_basic->Panel2->ResumeLayout(false);
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->split_basic))->EndInit();
+			   this->split_basic->ResumeLayout(false);
+			   this->table_basic->ResumeLayout(false);
 			   this->ResumeLayout(false);
 			   this->PerformLayout();
 
@@ -1853,6 +1856,26 @@ private: System::Windows::Forms::ToolStripButton^ button_check_connection;
 	private: System::Void button_check_connection_Click(System::Object^ sender, System::EventArgs^ e) {
 		Threading::Thread^ acquireThread = gcnew Threading::Thread(gcnew Threading::ThreadStart(this, &MainForm::ValidateConnection));
 		acquireThread->Start();
+	}
+	private: System::Void FormSizeListener(System::Object^ sender, System::EventArgs^ e) {
+		if (this->Width > 680) {
+			if (panel_basic->Visible && panel_basic->Enabled) {
+				this->table_basic->Dock = DockStyle::Right;
+				this->split_basic->Dock =DockStyle::Right;
+			}else {
+				this->table_convert->Dock = DockStyle::Right;
+				this->split_convert->Dock = DockStyle::Right;
+			}
+		}else {
+			if (panel_basic->Visible && panel_basic->Enabled) {
+				this->split_basic->Dock = DockStyle::Top;
+				this->table_basic->Dock = DockStyle::Bottom;
+			}
+			else {
+				this->split_convert->Dock = DockStyle::Top;
+				this->table_convert->Dock = DockStyle::Bottom;
+			}
+		}
 	}
 };
 }
